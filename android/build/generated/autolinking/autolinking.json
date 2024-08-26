@@ -1,26 +1,26 @@
 {
-  "root": "/Users/vpino/workspace/fuap/FuapMobileRn",
-  "reactNativePath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native",
+  "root": "/Users/vpino/workspace/fuap/fuap-mobile",
+  "reactNativePath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native",
   "reactNativeVersion": "0.75",
   "dependencies": {
     "@react-native-async-storage/async-storage": {
-      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-async-storage/async-storage",
+      "root": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/@react-native-async-storage/async-storage",
       "name": "@react-native-async-storage/async-storage",
       "platforms": {
         "ios": {
-          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-async-storage/async-storage/RNCAsyncStorage.podspec",
+          "podspecPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/@react-native-async-storage/async-storage/RNCAsyncStorage.podspec",
           "version": "1.24.0",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-async-storage/async-storage/android",
+          "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/@react-native-async-storage/async-storage/android",
           "packageImportPath": "import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;",
           "packageInstance": "new AsyncStoragePackage()",
           "buildTypes": [],
           "libraryName": "rnasyncstorage",
           "componentDescriptors": [],
-          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -29,22 +29,22 @@
       }
     },
     "@react-native-masked-view/masked-view": {
-      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-masked-view/masked-view",
+      "root": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/@react-native-masked-view/masked-view",
       "name": "@react-native-masked-view/masked-view",
       "platforms": {
         "ios": {
-          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-masked-view/masked-view/RNCMaskedView.podspec",
+          "podspecPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/@react-native-masked-view/masked-view/RNCMaskedView.podspec",
           "version": "0.3.1",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-masked-view/masked-view/android",
+          "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/@react-native-masked-view/masked-view/android",
           "packageImportPath": "import org.reactnative.maskedview.RNCMaskedViewPackage;",
           "packageInstance": "new RNCMaskedViewPackage()",
           "buildTypes": [],
           "componentDescriptors": [],
-          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-masked-view/masked-view/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/@react-native-masked-view/masked-view/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -53,17 +53,17 @@
       }
     },
     "react-native-gesture-handler": {
-      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-gesture-handler",
+      "root": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-gesture-handler",
       "name": "react-native-gesture-handler",
       "platforms": {
         "ios": {
-          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-gesture-handler/RNGestureHandler.podspec",
+          "podspecPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-gesture-handler/RNGestureHandler.podspec",
           "version": "2.18.1",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-gesture-handler/android",
+          "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-gesture-handler/android",
           "packageImportPath": "import com.swmansion.gesturehandler.RNGestureHandlerPackage;",
           "packageInstance": "new RNGestureHandlerPackage()",
           "buildTypes": [],
@@ -72,7 +72,7 @@
             "RNGestureHandlerButtonComponentDescriptor",
             "RNGestureHandlerRootViewComponentDescriptor"
           ],
-          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -81,23 +81,23 @@
       }
     },
     "react-native-reanimated": {
-      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-reanimated",
+      "root": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-reanimated",
       "name": "react-native-reanimated",
       "platforms": {
         "ios": {
-          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-reanimated/RNReanimated.podspec",
+          "podspecPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-reanimated/RNReanimated.podspec",
           "version": "3.15.0",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-reanimated/android",
+          "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-reanimated/android",
           "packageImportPath": "import com.swmansion.reanimated.ReanimatedPackage;",
           "packageInstance": "new ReanimatedPackage()",
           "buildTypes": [],
           "libraryName": "rnreanimated",
           "componentDescriptors": [],
-          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-reanimated/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-reanimated/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -106,17 +106,17 @@
       }
     },
     "react-native-safe-area-context": {
-      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-safe-area-context",
+      "root": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-safe-area-context",
       "name": "react-native-safe-area-context",
       "platforms": {
         "ios": {
-          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-safe-area-context/react-native-safe-area-context.podspec",
+          "podspecPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-safe-area-context/react-native-safe-area-context.podspec",
           "version": "4.10.9",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-safe-area-context/android",
+          "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-safe-area-context/android",
           "packageImportPath": "import com.th3rdwave.safeareacontext.SafeAreaContextPackage;",
           "packageInstance": "new SafeAreaContextPackage()",
           "buildTypes": [],
@@ -125,7 +125,7 @@
             "RNCSafeAreaProviderComponentDescriptor",
             "RNCSafeAreaViewComponentDescriptor"
           ],
-          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -134,17 +134,17 @@
       }
     },
     "react-native-screens": {
-      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-screens",
+      "root": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-screens",
       "name": "react-native-screens",
       "platforms": {
         "ios": {
-          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-screens/RNScreens.podspec",
+          "podspecPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-screens/RNScreens.podspec",
           "version": "3.34.0",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-screens/android",
+          "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-screens/android",
           "packageImportPath": "import com.swmansion.rnscreens.RNScreensPackage;",
           "packageInstance": "new RNScreensPackage()",
           "buildTypes": [],
@@ -160,7 +160,7 @@
             "RNSScreenComponentDescriptor",
             "RNSModalScreenComponentDescriptor"
           ],
-          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -169,17 +169,17 @@
       }
     },
     "react-native-svg": {
-      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-svg",
+      "root": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-svg",
       "name": "react-native-svg",
       "platforms": {
         "ios": {
-          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-svg/RNSVG.podspec",
+          "podspecPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-svg/RNSVG.podspec",
           "version": "15.6.0",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-svg/android",
+          "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-svg/android",
           "packageImportPath": "import com.horcrux.svg.SvgPackage;",
           "packageInstance": "new SvgPackage()",
           "buildTypes": [],
@@ -212,7 +212,7 @@
             "RNSVGTSpanComponentDescriptor",
             "RNSVGUseComponentDescriptor"
           ],
-          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt",
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -221,23 +221,23 @@
       }
     },
     "react-native-vector-icons": {
-      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-vector-icons",
+      "root": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-vector-icons",
       "name": "react-native-vector-icons",
       "platforms": {
         "ios": {
-          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-vector-icons/RNVectorIcons.podspec",
+          "podspecPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-vector-icons/RNVectorIcons.podspec",
           "version": "10.1.0",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-vector-icons/android",
+          "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-vector-icons/android",
           "packageImportPath": "import com.oblador.vectoricons.VectorIconsPackage;",
           "packageInstance": "new VectorIconsPackage()",
           "buildTypes": [],
           "libraryName": "RNVectorIconsSpec",
           "componentDescriptors": [],
-          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/fuap-mobile/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -407,7 +407,7 @@
         {
           "name": "--path <path>",
           "description": "Path to the React Native project root.",
-          "default": "/Users/vpino/workspace/fuap/FuapMobileRn"
+          "default": "/Users/vpino/workspace/fuap/fuap-mobile"
         },
         {
           "name": "--platform <string>",
@@ -690,7 +690,7 @@
   "assets": [],
   "project": {
     "ios": {
-      "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/ios",
+      "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/ios",
       "xcodeProject": {
         "name": "FuapMobile.xcworkspace",
         "path": ".",
@@ -699,7 +699,7 @@
       "assets": []
     },
     "android": {
-      "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/android",
+      "sourceDir": "/Users/vpino/workspace/fuap/fuap-mobile/android",
       "appName": "app",
       "packageName": "com.fuapmobile",
       "applicationId": "com.fuapmobile",
