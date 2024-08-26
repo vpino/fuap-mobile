@@ -1,0 +1,45 @@
+import {StatusOnboarding} from '../enums/status-onboarding.enum';
+import {Customer} from './customer.entity';
+
+export interface IndividualCustomer {
+  id: string;
+  customerId?: Customer;
+  firstName?: string;
+  middleName?: string;
+  lastName?: string;
+  dateOfBirth?: Date;
+  country?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
+  dni?: string;
+  address?: string;
+  addressExtension?: string;
+  typeDocument?: string;
+  town?: string;
+  housingType?: string;
+  housingYear?: string;
+  housingMonth?: string;
+  educationLevel?: string;
+  educationArea?: string;
+  educationYear?: string;
+  occupation?: string;
+  typeBusiness?: string;
+  companyName?: string;
+  companyPhone?: string;
+  companyAddress?: string;
+  companyCity?: string;
+  companyState?: string;
+  companyYear?: string;
+  companyMonth?: string;
+  phone?: string;
+  status?: StatusOnboarding;
+  statusKyc?: string;
+  verificationSessionId?: string;
+  verificationSessions?: string[];
+  manualValidation?: boolean;
+  isActive?: boolean;
+  isDeleted?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+}

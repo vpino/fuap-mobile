@@ -37,10 +37,11 @@ export const LoginScreen = () => {
 
       setSnackbarMessage('Login Successful');
 
-      navigation.navigate('OnboardingScreen');
+      navigation.navigate('LobbyOnboardingScreen');
     } catch (error: any) {
       setSnackbarMessage(
-        error?.message || 'Contrasena y/o correo invalidos, por favor intente de nuevo',
+        error?.message ||
+          'Contrasena y/o correo invalidos, por favor intente de nuevo',
       );
     } finally {
       setSnackbarVisible(true);

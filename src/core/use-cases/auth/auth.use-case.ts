@@ -15,6 +15,8 @@ export const loginUseCase = async (
     return {
       status: login?.data?.status,
       token: login?.data?.access_token,
+      invidualCustomer: login?.data?.individual,
+      id: login?.data?.id,
     };
   } catch (error: any) {
     console.log(`Error fetching login - loginUserCase ${error}`);

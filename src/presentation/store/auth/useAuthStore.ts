@@ -7,24 +7,36 @@ export interface AuthState {
   status: AuthStatus;
   token?: string;
   customer?: Customer;
+  id?: string;
 
   onLogin: (customer: Customer) => Promise<boolean>;
   onLogout: () => Promise<void>;
 }
 
-export const useAuthStore = create<AuthState>()((set) => ({
+export const useAuthStore = create<AuthState>()(set => ({
   status: 'checking',
   token: undefined,
   customer: undefined,
+  id: '',
 
   onLogin: async (customer: Customer) => {
-    set({status: 'authenticated', token: customer.token, customer: customer});
+    set({
+      status: 'authenticated',
+      token: customer.token,
+      customer: customer,
+      id: customer.id,
+    });
 
     return true;
   },
 
   onLogout: async () => {
     await StorageAdapter.removeItem('token');
-    set({status: 'unauthenticated', token: undefined, customer: undefined});
+    set({
+      status: 'unauthenticated',
+      token: undefined,
+      customer: undefined,
+      id: '',
+    });
   },
 }));

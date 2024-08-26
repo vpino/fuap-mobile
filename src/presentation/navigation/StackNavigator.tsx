@@ -7,7 +7,8 @@ import {RegisterScreen} from '../screens/auth/RegisterScreen';
 import {HomeScreen} from '../screens/home/HomeScreen';
 import {ProfileScreen} from '../screens/profile/ProfileScreen';
 import {SettingsScreen} from '../screens/settings/SettingsScreen';
-import { OnboardingScreen } from '../screens/onboarding/OnboardingScreen';
+import {LobbyOnboardingScreen} from '../screens/lobby-onbording/LobbyOnbordingScreen';
+import {OnboardingScreen} from '../screens/onboarding/OnboardingScreen';
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -15,7 +16,8 @@ export type RootStackParams = {
   HomeScreen: undefined;
   ProfileScreen: undefined;
   SettingsScreen: undefined;
-  OnboardingScreen: undefined
+  LobbyOnboardingScreen: undefined;
+  OnboardingScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -63,6 +65,11 @@ export const StackNavigator = () => {
         options={{cardStyleInterpolator: fadeAnimation}}
         name="SettingsScreen"
         component={SettingsScreen}
+      />
+      <Stack.Screen
+        options={{cardStyleInterpolator: fadeAnimation}}
+        name="LobbyOnboardingScreen"
+        component={LobbyOnboardingScreen}
       />
       <Stack.Screen
         options={{cardStyleInterpolator: fadeAnimation}}

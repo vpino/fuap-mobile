@@ -3,14 +3,16 @@ import {View, Text, StyleSheet} from 'react-native';
 import ArrowIcon from '../../../../assets/svg/arrow.svg';
 import {SvgProps} from 'react-native-svg';
 import {globalFontFamily} from '../../../theme/GlobalStyles';
-
+import HomeIcon from '../../../../assets/svg/home.svg';
+import AppsIcon from '../../../../assets/svg/apps.svg';
+import CreateAccountIcon from '../../../../assets/svg/create-account.svg';
 interface BreadcrumbItem {
   icon: React.FC<SvgProps>;
   text: string;
 }
 
 interface BreadcrumbProps {
-  items: BreadcrumbItem[];
+  items?: BreadcrumbItem[];
 }
 
 const BreadcrumbItem = ({
@@ -26,6 +28,14 @@ const BreadcrumbItem = ({
 );
 
 export default function Breadcrumb({items}: BreadcrumbProps) {
+  const breadcrumbItems = [
+    {icon: HomeIcon, text: 'Home'},
+    {icon: AppsIcon, text: 'Aplicaciones'},
+    {icon: CreateAccountIcon, text: 'Crear Cuenta'},
+  ];
+
+  items = items ?? breadcrumbItems;
+
   return (
     <View style={styles.container}>
       {items.map((item, index) => (

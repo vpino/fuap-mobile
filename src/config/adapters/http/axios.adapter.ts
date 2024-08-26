@@ -1,6 +1,7 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {HttpAdapter} from './http.adapter';
 import {StorageAdapter} from '../storage/storage-adapter';
+import {useAuthStore} from '../../../presentation/store/auth/useAuthStore';
 
 interface Options {
   baseUrl: string;
@@ -18,7 +19,13 @@ export class AxiosHttpAdapter extends HttpAdapter {
     });
 
     this.axiosInstance.interceptors.request.use(async config => {
-      const token = await StorageAdapter.getItem('token');
+      let token = await StorageAdapter.getItem('token');
+
+      if (!token) {
+        const authStore = useAuthStore.getState();
+        token = authStore.token ?? null;
+      }
+
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }

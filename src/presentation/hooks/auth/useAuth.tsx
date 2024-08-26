@@ -6,6 +6,8 @@ import {SignupResponse} from '../../../infrastructure/interfaces/auth/sign-up.re
 import {SignUpDto} from '../../../infrastructure/dtos/auth/sign-up.dto';
 import {StorageAdapter} from '../../../config/adapters/storage/storage-adapter';
 import {useAuthStore} from '../../store/auth/useAuthStore';
+import {useOnboardingStore} from '../../store/onboarding/useOnboardingStore';
+import {IndividualCustomer} from '../../../core/entities/individual-customer.entity';
 
 interface AuthProps {
   email: string;
@@ -15,6 +17,8 @@ interface AuthProps {
 
 export const useAuth = () => {
   const {onLogin} = useAuthStore();
+  const {setIndividualCustomer} = useOnboardingStore();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const login = async ({email, password}: AuthProps) => {
@@ -28,6 +32,9 @@ export const useAuth = () => {
       );
 
       onLogin(customerLogin);
+      setIndividualCustomer(
+        customerLogin.invidualCustomer as IndividualCustomer,
+      );
 
       return customerLogin;
     } catch (error) {
