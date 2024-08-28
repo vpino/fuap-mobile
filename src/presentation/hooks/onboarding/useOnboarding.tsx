@@ -32,9 +32,11 @@ export const useOnboarding = ({id}: OnboardingProps) => {
       );
 
       updateIndividualCustomer({
-        firstName: response.data.firstName,
-        lastName: response.data.lastName,
+        firstName: response?.data?.firstName,
+        lastName: response?.data?.lastName,
+        status: response?.data?.status,
       });
+
       return response;
     } catch (error: any) {
       throw error;
@@ -51,7 +53,14 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         id,
         body,
       );
-      updateIndividualCustomer({typeDocument: body.typeDocument});
+
+      updateIndividualCustomer({
+        country: response?.country,
+        typeDocument: response?.typeDocument,
+        dni: response?.dni,
+        status: response?.status,
+      });
+
       return response;
     } catch (error: any) {
       throw error;
@@ -68,11 +77,15 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         id,
         body,
       );
+
       updateIndividualCustomer({
-        address: body.address,
-        city: body.city,
-        state: body.state,
+        address: response?.address,
+        city: response?.city,
+        state: response?.state,
+        town: response?.town,
+        status: response?.status,
       });
+
       return response;
     } catch (error: any) {
       throw error;
@@ -90,9 +103,10 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         body,
       );
       updateIndividualCustomer({
-        housingType: body.housingType,
-        housingYear: body.housingYear,
-        housingMonth: body.housingMonth,
+        housingType: response?.housingType,
+        housingYear: response?.housingYear,
+        housingMonth: response?.housingMonth,
+        status: response?.status,
       });
       return response;
     } catch (error: any) {
@@ -111,9 +125,10 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         body,
       );
       updateIndividualCustomer({
-        educationLevel: body.educationLevel,
-        educationArea: body.educationArea,
-        educationYear: body.educationYear,
+        educationLevel: response?.educationLevel,
+        educationArea: response?.educationArea,
+        educationYear: response?.educationYear,
+        status: response?.status,
       });
       return response;
     } catch (error: any) {
@@ -131,7 +146,7 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         id,
         body,
       );
-      updateIndividualCustomer({occupation: body.occupation});
+      updateIndividualCustomer({occupation: response?.occupation});
       return response;
     } catch (error: any) {
       throw error;
@@ -149,13 +164,13 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         body,
       );
       updateIndividualCustomer({
-        companyName: body.companyName,
-        companyPhone: body.companyPhone,
-        companyAddress: body.companyAddress,
-        companyCity: body.companyCity,
-        companyState: body.companyState,
-        companyYear: body.companyYear,
-        companyMonth: body.companyMonth,
+        companyName: response?.companyName,
+        companyPhone: response?.companyPhone,
+        companyAddress: response?.companyAddress,
+        companyCity: response?.companyCity,
+        companyState: response?.companyState,
+        companyYear: response?.companyYear,
+        companyMonth: response?.companyMonth,
       });
       return response;
     } catch (error: any) {
@@ -173,9 +188,12 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         id,
         body,
       );
+
       updateIndividualCustomer({
-        phone: body.phone,
+        phone: response?.phone,
+        status: response?.status,
       });
+
       return response;
     } catch (error: any) {
       throw error;

@@ -26,11 +26,14 @@ export const LoadNames: React.FC<LoadNamesProps> = ({send}) => {
 
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLoadNames = async (values: {
     firstName: string;
     lastName: string;
   }) => {
+    setIsLoading(true);
+
     try {
       await loadNames({firstName: values.firstName, lastName: values.lastName});
       setSnackbarMessage('Nombre y apellidos actualizados exitosamente.');
@@ -42,6 +45,7 @@ export const LoadNames: React.FC<LoadNamesProps> = ({send}) => {
       );
     } finally {
       setSnackbarVisible(true);
+      setIsLoading(false);
     }
   };
 
@@ -99,8 +103,9 @@ export const LoadNames: React.FC<LoadNamesProps> = ({send}) => {
                 !errors.firstName &&
                 touched.lastName &&
                 !errors.lastName
-              )
+              ) || isLoading
             }
+            isLoading={isLoading}
           />
 
           <Snackbar

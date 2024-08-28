@@ -7,10 +7,10 @@ export const onboardingMachine = createMachine({
     loadNames: {firstName: '', lastName: ''},
     document: {country: '', typeDocument: '', dni: ''},
     address: {address: '', state: '', city: '', town: ''},
-    housingData: {type: '', year: '', month: ''},
-    educationData: {level: '', area: '', year: ''},
+    housing: {type: '', year: '', month: ''},
+    education: {level: '', area: '', year: ''},
     occupation: {occupation: '', typeBusiness: ''},
-    companyData: {
+    company: {
       name: '',
       phone: '',
       address: '',
@@ -57,90 +57,82 @@ export const onboardingMachine = createMachine({
     address: {
       on: {
         NEXT: {
-          target: 'housingData',
+          target: 'housing',
           actions: assign((context: any, event: any) => ({
             address: {
-              address: event?.data?.address?.address ?? context.address.address,
-              state: event?.data?.address?.state ?? context.address.state,
-              city: event?.data?.address?.city ?? context.address.city,
-              town: event?.data?.address?.town ?? context.address.town,
+              address:
+                event?.data?.address?.address ?? context?.address?.address,
+              state: event?.data?.address?.state ?? context?.address?.state,
+              city: event?.data?.address?.city ?? context?.address?.city,
+              town: event?.data?.address?.town ?? context?.address?.town,
             },
           })),
         },
         PREVIOUS: 'document',
       },
     },
-    housingData: {
+    housing: {
       on: {
         NEXT: {
-          target: 'educationData',
+          target: 'education',
           actions: assign((context: any, event: any) => ({
-            housingData: {
-              type: event?.data?.housingData?.type ?? context.housingData.type,
-              year: event?.data?.housingData?.year ?? context.housingData.year,
-              month:
-                event?.data?.housingData?.month ?? context.housingData.month,
+            housing: {
+              type: event?.data?.housing?.type ?? context?.housing?.type,
+              year: event?.data?.housing?.year ?? context?.housing?.year,
+              month: event?.data?.housing?.month ?? context?.housing?.month,
             },
           })),
         },
         PREVIOUS: 'address',
       },
     },
-    educationData: {
+    education: {
       on: {
         NEXT: {
           target: 'occupation',
           actions: assign((context: any, event: any) => ({
-            educationData: {
-              level:
-                event?.data?.educationData?.level ??
-                context.educationData.level,
-              area:
-                event?.data?.educationData?.area ?? context.educationData.area,
-              year:
-                event?.data?.educationData?.year ?? context.educationData.year,
+            education: {
+              level: event?.data?.education?.level ?? context?.education?.level,
+              area: event?.data?.education?.area ?? context?.education?.area,
+              year: event?.data?.education?.year ?? context?.education?.year,
             },
           })),
         },
-        PREVIOUS: 'housingData',
+        PREVIOUS: 'housing',
       },
     },
     occupation: {
       on: {
         NEXT: {
-          target: 'companyData',
+          target: 'company',
           actions: assign((context: any, event: any) => ({
             occupation: {
               occupation:
                 event?.data?.occupation?.occupation ??
-                context.occupation.occupation,
+                context?.occupation?.occupation,
               typeBusiness:
                 event?.data?.occupation?.typeBusiness ??
-                context.occupation.typeBusiness,
+                context?.occupation?.typeBusiness,
             },
           })),
         },
-        PREVIOUS: 'educationData',
+        PREVIOUS: 'education',
       },
     },
-    companyData: {
+    company: {
       on: {
         NEXT: {
           target: 'contactInfo',
           actions: assign((context: any, event: any) => ({
-            companyData: {
-              name: event?.data?.companyData?.name ?? context.companyData.name,
-              phone:
-                event?.data?.companyData?.phone ?? context.companyData.phone,
+            company: {
+              name: event?.data?.company?.name ?? context?.company?.name,
+              phone: event?.data?.company?.phone ?? context?.company?.phone,
               address:
-                event?.data?.companyData?.address ??
-                context.companyData.address,
-              state:
-                event?.data?.companyData?.state ?? context.companyData.state,
-              city: event?.data?.companyData?.city ?? context.companyData.city,
-              year: event?.data?.companyData?.year ?? context.companyData.year,
-              month:
-                event?.data?.companyData?.month ?? context.companyData.month,
+                event?.data?.company?.address ?? context?.company?.address,
+              state: event?.data?.company?.state ?? context?.company?.state,
+              city: event?.data?.company?.city ?? context?.company?.city,
+              year: event?.data?.company?.year ?? context?.company?.year,
+              month: event?.data?.company?.month ?? context?.company?.month,
             },
           })),
         },
@@ -154,11 +146,11 @@ export const onboardingMachine = createMachine({
           actions: assign((context: any, event: any) => ({
             contactInfo: {
               phone:
-                event?.data?.contactInfo?.phone ?? context.contactInfo.phone,
+                event?.data?.contactInfo?.phone ?? context?.contactInfo?.phone,
             },
           })),
         },
-        PREVIOUS: 'companyData',
+        PREVIOUS: 'company',
         SUBMIT: 'complete',
       },
     },

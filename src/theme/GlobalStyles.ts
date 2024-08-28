@@ -150,4 +150,48 @@ export const globalStyles = StyleSheet.create({
     fontWeight: '400',
     letterSpacing: 0.15,
   },
+
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginTop: 4,
+  },
+  containerCountrySelect: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginTop: 15,
+  },
+  selectCountryText: {
+    overflow: 'hidden',
+    color: 'rgba(26, 26, 26, 0.70)',
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: 24,
+    height: 55,
+  },
+  dropdownStyle: {
+    maxWidth: '70%',
+    maxHeight: 100,
+    paddingRight: 24,
+  },
+  searchStyle: {
+    maxWidth: '70%',
+    paddingRight: 10,
+  },
+  inputSelect: {
+    marginTop: 12,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(130, 130, 130, 0.20)',
+    height: 55,
+    alignItems: 'center',
+  },
+  dropDownStyleSelect: {
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(130, 130, 130, 0.20)',
+  },
 });
