@@ -3,27 +3,27 @@ import {StyleSheet} from 'react-native';
 
 /* fonts */
 export const globalFontFamily = {
-  textSmall: 'Inter-Regular',
-  body: 'Manrope-Regular',
-  header: 'Manrope-Bold',
+  interRegular: 'Inter-Regular',
+  manropeRegular: 'Manrope-Regular',
+  manropeBold: 'Manrope-Bold',
   helveticaNeue: 'Helvetica Neue',
   helvetica: 'Helvetica',
   noirPro: 'Noir Pro',
   manropeSemiBold: 'Manrope-SemiBold',
   manropeMedium: 'Manrope-Medium',
-  subtleMedium: 'Inter-Medium',
+  interMedium: 'Inter-Medium',
   interLight: 'Inter-Light',
-  textLargeBolder: 'Inter-SemiBold',
+  interSemiBold: 'Inter-SemiBold',
   manropeLight: 'Manrope-Light',
   manropeExtraLight: 'Manrope-ExtraLight',
 };
 /* font sizes */
 export const globalFontSize = {
-  textLargeBolder_size: 16,
-  subtleMedium_size: 14,
-  header_size: 32,
+  interSemiBold_size: 16,
+  interMedium_size: 14,
+  manropeBold_size: 32,
   size_xl: 20,
-  textSmall_size: 12,
+  interRegular_size: 12,
   size_5xs_5: 8,
   size_sm_5: 14,
   size_3xs: 10,
@@ -110,8 +110,9 @@ export const globalBorder = {
 
 export const globalStyles = StyleSheet.create({
   scrollContainer: {
-    flex: Platform.OS === 'ios' ? 0 : 1,
+    flexGrow: Platform.OS === 'ios' ? 0 : 1,
     backgroundColor: globalColors.secondary,
+    // paddingBottom: 60,
   },
 
   container: {
@@ -173,12 +174,10 @@ export const globalStyles = StyleSheet.create({
     height: 55,
   },
   dropdownStyle: {
-    maxWidth: '70%',
     maxHeight: 100,
     paddingRight: 24,
   },
   searchStyle: {
-    maxWidth: '70%',
     paddingRight: 10,
   },
   inputSelect: {

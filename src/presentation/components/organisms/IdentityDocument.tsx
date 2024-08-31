@@ -104,8 +104,14 @@ export const IdentityDocument: React.FC<IdentityDocumentProps> = ({send}) => {
                 setFieldValue('country', value.code);
               }}
               countryCodeTextStyles={{fontSize: 13}}
-              dropdownStyles={globalStyles.dropdownStyle}
-              searchStyles={globalStyles.searchStyle}
+              dropdownStyles={{
+                ...globalStyles.dropdownStyle,
+                ...styles.dropdownStyle,
+              }}
+              searchStyles={{
+                ...globalStyles.searchStyle,
+                ...globalStyles.searchStyle,
+              }}
             />
           </View>
 
@@ -177,9 +183,15 @@ export const IdentityDocument: React.FC<IdentityDocumentProps> = ({send}) => {
 const styles = StyleSheet.create({
   button: {
     marginTop: 20,
-    width: '60%',
+    width: '40%',
   },
   textInput: {
     marginVertical: 20,
+  },
+  dropdownStyle: {
+    maxWidth: '70%',
+  },
+  searchStyle: {
+    maxWidth: '70%',
   },
 });

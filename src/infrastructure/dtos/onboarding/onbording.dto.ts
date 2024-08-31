@@ -44,8 +44,9 @@ export interface CompanyInfoDTO {
   companyName: string;
   companyPhone: string;
   companyAddress: string;
-  companyCity: string;
   companyState: string;
+  companyCity: string;
+  companyTown: string;
   companyYear: string;
   companyMonth: string;
 }

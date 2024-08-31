@@ -687,7 +687,9 @@
     "ios": {},
     "android": {}
   },
-  "assets": [],
+  "assets": [
+    "./assets/fonts"
+  ],
   "project": {
     "ios": {
       "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/ios",
@@ -696,6 +698,7 @@
         "path": ".",
         "isWorkspace": true
       },
+      "automaticPodsInstallation": false,
       "assets": []
     },
     "android": {

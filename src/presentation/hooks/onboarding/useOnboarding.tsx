@@ -138,7 +138,7 @@ export const useOnboarding = ({id}: OnboardingProps) => {
     }
   };
 
-  const occupation = async (body: OccupationDTO) => {
+  const occupationData = async (body: OccupationDTO) => {
     try {
       setIsLoading(true);
       const response = await UseCases.occupationUseCase(
@@ -146,7 +146,11 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         id,
         body,
       );
-      updateIndividualCustomer({occupation: response?.occupation});
+      updateIndividualCustomer({
+        occupation: response?.occupation,
+        typeBusiness: response?.typeBusiness,
+        status: response?.status,
+      });
       return response;
     } catch (error: any) {
       throw error;
@@ -155,7 +159,7 @@ export const useOnboarding = ({id}: OnboardingProps) => {
     }
   };
 
-  const companyInfo = async (body: CompanyInfoDTO) => {
+  const companyData = async (body: CompanyInfoDTO) => {
     try {
       setIsLoading(true);
       const response = await UseCases.companyInfoUseCase(
@@ -171,6 +175,7 @@ export const useOnboarding = ({id}: OnboardingProps) => {
         companyState: response?.companyState,
         companyYear: response?.companyYear,
         companyMonth: response?.companyMonth,
+        status: response?.status,
       });
       return response;
     } catch (error: any) {
@@ -180,7 +185,7 @@ export const useOnboarding = ({id}: OnboardingProps) => {
     }
   };
 
-  const contactInfo = async (body: ContactInfoDTO) => {
+  const contactData = async (body: ContactInfoDTO) => {
     try {
       setIsLoading(true);
       const response = await UseCases.contactInfoUseCase(
@@ -208,9 +213,9 @@ export const useOnboarding = ({id}: OnboardingProps) => {
     address,
     housingData,
     educationData,
-    occupation,
-    companyInfo,
-    contactInfo,
+    occupationData,
+    companyData,
+    contactData,
     isLoading,
   };
 };

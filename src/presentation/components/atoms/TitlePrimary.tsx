@@ -15,7 +15,7 @@ export const TitlePrimary = ({label, styles}: Props) => {
 export const customStyles = StyleSheet.create({
   title: {
     color: globalColors.slate900,
-    fontFamily: globalFontFamily.header,
+    fontFamily: globalFontFamily.manropeBold,
     fontSize: 32,
     fontStyle: 'normal',
     fontWeight: '700',

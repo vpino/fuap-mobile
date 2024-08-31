@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, ScrollView} from 'react-native';
 import {globalStyles} from '../../../theme/GlobalStyles';
 import ProgressBar from '../../components/atoms/ProgressBar';
@@ -9,6 +9,13 @@ import {onboardingMachine} from '../../machines/onboarding/OnboardingMachine';
 import {useOnboardingStore} from '../../store/onboarding/useOnboardingStore';
 import {IdentityDocument} from '../../components/organisms/IdentityDocument';
 import {AddressInformation} from '../../components/organisms/AddressInformation';
+import {HousingInformation} from '../../components/organisms/HousingInformation';
+import {EducationInformation} from '../../components/organisms/EducationInformation';
+import {OccupationInformation} from '../../components/organisms/OccupationInformation';
+import {CompanyInformation} from '../../components/organisms/CompanyInformation';
+import {ContactInformation} from '../../components/organisms/ContactInformation';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {RootStackParams} from '../../navigation/StackNavigator';
 
 enum StatusOnboarding {
   LOAD_NAMES = 'loadNames',
@@ -19,6 +26,7 @@ enum StatusOnboarding {
   OCCUPATION = 'occupation',
   COMPANY = 'company',
   CONTACT = 'contact',
+  COMPLETED = 'completed',
 }
 
 enum ProgressBarEnum {
@@ -30,30 +38,42 @@ enum ProgressBarEnum {
   OCCUPATION = 75,
   COMPANY = 87.5,
   CONTACT = 100,
+  COMPLETED = 100,
 }
 
 export const OnboardingScreen = () => {
   const [state, send] = useMachine(onboardingMachine);
   const {individualCustomer} = useOnboardingStore();
+  const navigation = useNavigation<NavigationProp<RootStackParams>>();
 
   const status = StatusOnboarding[individualCustomer.status ?? 'LOAD_NAMES'];
+
   const progressBar =
     ProgressBarEnum[individualCustomer.status ?? 'LOAD_NAMES'];
 
   const currentState = status !== 'loadNames' ? status : state.value;
 
-  console.log('currentState', currentState);
+  useEffect(() => {
+    if (status === StatusOnboarding.COMPLETED) {
+      navigation.navigate('HomeScreen');
+    }
+  }, [status, navigation]);
 
   return (
     <ScrollView
       contentContainerStyle={globalStyles.scrollContainer}
       nestedScrollEnabled={true}>
       <View style={globalStyles.container}>
-        <ProgressBar progress={progressBar} />
+        <ProgressBar progress={progressBar ?? 100} />
         <Breadcrumb />
         {currentState === 'loadNames' && <LoadNames send={send} />}
         {currentState === 'document' && <IdentityDocument send={send} />}
         {currentState === 'address' && <AddressInformation send={send} />}
+        {currentState === 'housing' && <HousingInformation send={send} />}
+        {currentState === 'education' && <EducationInformation send={send} />}
+        {currentState === 'occupation' && <OccupationInformation send={send} />}
+        {currentState === 'company' && <CompanyInformation send={send} />}
+        {currentState === 'contact' && <ContactInformation send={send} />}
       </View>
     </ScrollView>
   );

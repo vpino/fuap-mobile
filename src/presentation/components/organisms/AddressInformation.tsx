@@ -229,7 +229,7 @@ export const AddressInformation: React.FC<AddressInformationProps> = ({
 const styles = StyleSheet.create({
   button: {
     marginTop: 20,
-    width: '60%',
+    width: '40%',
   },
 
   rowContainer: {

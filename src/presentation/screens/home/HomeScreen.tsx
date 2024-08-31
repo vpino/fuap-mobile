@@ -1,49 +1,86 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {globalStyles} from '../../../theme/GlobalStyles';
-import ProgressBar from '../../components/atoms/ProgressBar';
-import HomeIcon from '../../../../assets/svg/home.svg';
-import AppsIcon from '../../../../assets/svg/apps.svg';
-import CreateAccountIcon from '../../../../assets/svg/create-account.svg';
-import Breadcrumb from '../../components/molecules/Breadcrumb';
 import {TitlePrimary} from '../../components/atoms/TitlePrimary';
 import {SubTitle} from '../../components/atoms/SubTitle';
-import ArrowWhite from '../../../../assets/svg/arrow-white.svg';
-import {PrimaryButton} from '../../components/atoms/PrimaryButton';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParams} from '../../navigation/StackNavigator';
+import {useOnboardingStore} from '../../store/onboarding/useOnboardingStore';
+import TwoTextRow from '../../components/molecules/TwoTextRow';
+import ArrowBlue from '../../../../assets/svg/arrow-blue.svg';
+import {Divider} from 'react-native-paper';
+import CenteredTextButton from '../../components/molecules/CenteredTextButton';
+import ArrowBlack from '../../../../assets/svg/arrow-black.svg';
+import {StatusOnboarding} from '../../../core/enums/status-onboarding.enum';
 
 export const HomeScreen = () => {
-  const breadcrumbItems = [
-    {icon: HomeIcon, text: 'Home'},
-    {icon: AppsIcon, text: 'Aplicaciones'},
-    {icon: CreateAccountIcon, text: 'Crear Cuenta'},
-  ];
+  const {individualCustomer} = useOnboardingStore();
 
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const fullName = `${individualCustomer.firstName} ${individualCustomer.lastName}`;
+
+  useEffect(() => {}, []);
 
   return (
     <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
       <View style={globalStyles.container}>
-        <ProgressBar progress={10} />
-        <Breadcrumb items={breadcrumbItems} />
-        <TitlePrimary label="Vamos a empezar!" />
-        <SubTitle label="Comencemos con su información personal para generar tu cuenta. Esto debería tomar unos minutos. Te preguntaremos datos generales, información laboral para hacerte el proceso de consultar prestamos mas fácil." />
-        <PrimaryButton
-          onPress={() => navigation.navigate('HomeScreen')}
-          label="Buscar tu prestamo"
-          icon={ArrowWhite}
-          iconPosition="right"
-          styles={styles.button}
+        <TitlePrimary
+          label={`Bienvenido, ${fullName}`}
+          styles={styles.textPrimary}
         />
+        <SubTitle label="Puedes aplicar para cualquier producto ofrecido abajo o realizar cualquier informacion asociado a su cuenta." />
+
+        <TwoTextRow
+          firstText="Mis préstamos activos"
+          secondText="Ver todos"
+          iconSVG={ArrowBlue}
+          containerStyle={styles.containerTextLoadActive}
+        />
+
+        <CenteredTextButton
+          text="¡Todavía no tienes un préstamo activo!"
+          buttonText="Aplicar ahora"
+          iconSVG={ArrowBlack}
+          iconPosition="right"
+          containerStyle={styles.containerCenteredText}
+        />
+
+        <Divider style={styles.divider} />
+
+        <TwoTextRow
+          firstText="Información Personal"
+          secondText="Cambiar Datos"
+          iconSVG={ArrowBlue}
+          containerStyle={styles.containerTextInfoPersonal}
+        />
+
+        {individualCustomer.status !== StatusOnboarding.COMPLETED && (
+          <CenteredTextButton
+            text="¡Todavía no he terminado tu onboarding!"
+            buttonText="Confirmar información"
+            iconSVG={ArrowBlack}
+            iconPosition="right"
+            containerStyle={styles.containerCenteredText}
+            routeRedirection="LobbyOnboardingScreen"
+          />
+        )}
       </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
+  divider: {
+    marginVertical: 24,
+    borderRadius: 12,
+  },
+  textPrimary: {
+    marginTop: 0,
+  },
+  containerTextLoadActive: {
+    marginTop: 25,
+  },
+  containerCenteredText: {
     marginTop: 20,
-    width: '60%',
+  },
+  containerTextInfoPersonal: {
+    marginTop: 5,
   },
 });
