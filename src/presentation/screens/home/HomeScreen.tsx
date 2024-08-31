@@ -14,7 +14,9 @@ import {StatusOnboarding} from '../../../core/enums/status-onboarding.enum';
 export const HomeScreen = () => {
   const {individualCustomer} = useOnboardingStore();
 
-  const fullName = `${individualCustomer.firstName} ${individualCustomer.lastName}`;
+  const fullName = `${individualCustomer.firstName ?? 'Customer'} ${
+    individualCustomer.lastName ?? ''
+  }`;
 
   useEffect(() => {}, []);
 
