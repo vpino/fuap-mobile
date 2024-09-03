@@ -1,0 +1,21 @@
+<svg
+  width="16"
+  height="16"
+  viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  stroke="black"
+  stroke-width="8"
+>
+  <path
+    d="M50 15
+       L50 85"
+  />
+  <path
+    d="M65 25
+       Q50 15 35 25
+       Q20 35 50 45
+       Q80 55 65 75
+       Q50 85 35 75"
+  />
+</svg>

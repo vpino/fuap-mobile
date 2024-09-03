@@ -82,7 +82,7 @@ export const ContactInformation: React.FC<ContactInformationProps> = () => {
               setPhone(value);
             }}
             setCountryDetails={(value: any) => {
-              setFieldValue('dialCode', value);
+              setFieldValue('dialCode', value.dial_code);
             }}
             phoneStyles={styles.inputPhone}
             countryCodeTextStyles={{

@@ -10,6 +10,7 @@ import {Divider} from 'react-native-paper';
 import CenteredTextButton from '../../components/molecules/CenteredTextButton';
 import ArrowBlack from '../../../../assets/svg/arrow-black.svg';
 import {StatusOnboarding} from '../../../core/enums/status-onboarding.enum';
+import CardInfoPersonal from '../../components/organisms/CardInfoPersonal';
 
 export const HomeScreen = () => {
   const {individualCustomer} = useOnboardingStore();
@@ -42,6 +43,7 @@ export const HomeScreen = () => {
           iconSVG={ArrowBlack}
           iconPosition="right"
           containerStyle={styles.containerCenteredText}
+          routeRedirection="LobbyLoadScreen"
         />
 
         <Divider style={styles.divider} />
@@ -52,6 +54,10 @@ export const HomeScreen = () => {
           iconSVG={ArrowBlue}
           containerStyle={styles.containerTextInfoPersonal}
         />
+
+        {individualCustomer.status === StatusOnboarding.COMPLETED && (
+          <CardInfoPersonal individual={individualCustomer} />
+        )}
 
         {individualCustomer.status !== StatusOnboarding.COMPLETED && (
           <CenteredTextButton

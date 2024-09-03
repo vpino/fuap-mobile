@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Text} from 'react-native-paper';
 import {globalStyles} from '../../../theme/GlobalStyles';
-import {StyleProp, ViewStyle} from 'react-native';
+import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 
 interface Props {
   onPress: () => void;
@@ -11,6 +11,7 @@ interface Props {
   styles?: StyleProp<ViewStyle>;
   iconPosition?: 'left' | 'right';
   disabled?: boolean;
+  textStyles?: StyleProp<TextStyle>;
 }
 
 export const PrimaryButton = ({
@@ -21,6 +22,7 @@ export const PrimaryButton = ({
   styles,
   iconPosition = 'left',
   disabled,
+  textStyles,
 }: Props) => {
   return (
     <Button
@@ -33,7 +35,7 @@ export const PrimaryButton = ({
         flexDirection: iconPosition === 'right' ? 'row-reverse' : 'row',
       }}
       labelStyle={{color: 'white', fontSize: 18}}>
-      <Text style={globalStyles.textPrimaryButton}>{label}</Text>
+      <Text style={[globalStyles.textPrimaryButton, textStyles]}>{label}</Text>
     </Button>
   );
 };

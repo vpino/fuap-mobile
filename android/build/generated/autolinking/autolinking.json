@@ -28,6 +28,30 @@
         }
       }
     },
+    "@react-native-community/checkbox": {
+      "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-community/checkbox",
+      "name": "@react-native-community/checkbox",
+      "platforms": {
+        "ios": {
+          "podspecPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-community/checkbox/RNCCheckbox.podspec",
+          "version": "0.5.17",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-community/checkbox/android",
+          "packageImportPath": "import com.reactnativecommunity.checkbox.ReactCheckBoxPackage;",
+          "packageInstance": "new ReactCheckBoxPackage()",
+          "buildTypes": [],
+          "componentDescriptors": [],
+          "cmakeListsPath": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-community/checkbox/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
     "@react-native-masked-view/masked-view": {
       "root": "/Users/vpino/workspace/fuap/FuapMobileRn/node_modules/@react-native-masked-view/masked-view",
       "name": "@react-native-masked-view/masked-view",
