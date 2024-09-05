@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: '#F8F8F8',
     padding: 16,
-    marginVertical: 20,
+    marginTop: 5,
   },
   titleStyle: {
     color: '#000',
@@ -84,12 +84,11 @@ const styles = StyleSheet.create({
     fontFamily: globalFontFamily.interMedium,
     fontSize: 12,
     fontWeight: 400,
-    lineHeight: 20,
     fontStyle: 'normal',
   },
   divider: {
     backgroundColor: '#ECECEC',
-    marginVertical: 10,
+    marginVertical: 4,
     borderRadius: 12,
     height: 2,
   },

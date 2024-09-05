@@ -11,6 +11,7 @@ import {LobbyOnboardingScreen} from '../screens/lobby-onbording/LobbyOnbordingSc
 import {OnboardingScreen} from '../screens/onboarding/OnboardingScreen';
 import {LobbyLoadScreen} from '../screens/lobby-load/LobbyLoadScreen';
 import {PersonalLoadScreen} from '../screens/personal-loan/PersonalLoanScreen';
+import {SubmmissionsScreen} from '../screens/submmissions/SubmmissionsScreen';
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -22,6 +23,7 @@ export type RootStackParams = {
   OnboardingScreen: undefined;
   LobbyLoadScreen: undefined;
   PersonalLoadScreen: undefined;
+  SubmmissionsScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -89,6 +91,11 @@ export const StackNavigator = () => {
         options={{cardStyleInterpolator: fadeAnimation}}
         name="PersonalLoadScreen"
         component={PersonalLoadScreen}
+      />
+      <Stack.Screen
+        options={{cardStyleInterpolator: fadeAnimation}}
+        name="SubmmissionsScreen"
+        component={SubmmissionsScreen}
       />
     </Stack.Navigator>
   );

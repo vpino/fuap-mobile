@@ -1,25 +1,58 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {globalStyles} from '../../../theme/GlobalStyles';
 import {TitlePrimary} from '../../components/atoms/TitlePrimary';
 import {SubTitle} from '../../components/atoms/SubTitle';
 import {useOnboardingStore} from '../../store/onboarding/useOnboardingStore';
 import TwoTextRow from '../../components/molecules/TwoTextRow';
-import ArrowBlue from '../../../../assets/svg/arrow-blue.svg';
 import {Divider} from 'react-native-paper';
 import CenteredTextButton from '../../components/molecules/CenteredTextButton';
 import ArrowBlack from '../../../../assets/svg/arrow-black.svg';
 import {StatusOnboarding} from '../../../core/enums/status-onboarding.enum';
 import CardInfoPersonal from '../../components/organisms/CardInfoPersonal';
+import Cardloan from '../../components/organisms/CardLoan';
+import {ILoanPreview} from '../../../infrastructure/interfaces/home/loan-preview';
+import ArrowSimpleBlack from '../../../../assets/svg/arrow-simple-black.svg';
+import {usePersonalLoan} from '../../hooks/personal-loan/usePersonalLoan';
+import {useAuthStore} from '../../store/auth/useAuthStore';
+
+const formatLoanPersonal = (loan: any): ILoanPreview => {
+  const idLastFourDigits = loan.id.slice(-4);
+  return {
+    title: 'Préstamo personal',
+    idLoan: `${idLastFourDigits} | Banco Mercantil`,
+    datePayment: loan.createdAt,
+    status: loan.status,
+  };
+};
 
 export const HomeScreen = () => {
+  const {id} = useAuthStore();
   const {individualCustomer} = useOnboardingStore();
+  const {getLastCreatedByCustomer} = usePersonalLoan({id: id ?? ''});
+  const [loans, setLoans] = useState<ILoanPreview[]>([]);
 
   const fullName = `${individualCustomer.firstName ?? 'Customer'} ${
     individualCustomer.lastName ?? ''
   }`;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const fetchLoan = async () => {
+      try {
+        const personalLoan = await getLastCreatedByCustomer();
+
+        if (personalLoan.data) {
+          const loanP = formatLoanPersonal(personalLoan.data);
+          setLoans([loanP]);
+          // setLoans(prevLoans => [...prevLoans, loanP]);
+        }
+      } catch (error) {
+        console.error('Error fetching personal loan: ', error);
+      }
+    };
+
+    fetchLoan();
+  }, []);
 
   return (
     <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
@@ -33,26 +66,41 @@ export const HomeScreen = () => {
         <TwoTextRow
           firstText="Mis préstamos activos"
           secondText="Ver todos"
-          iconSVG={ArrowBlue}
+          iconSVG={ArrowSimpleBlack}
           containerStyle={styles.containerTextLoadActive}
+          secondTextStyle={styles.secondText}
+          secondTextRoute="SubmmissionsScreen"
         />
 
-        <CenteredTextButton
-          text="¡Todavía no tienes un préstamo activo!"
-          buttonText="Aplicar ahora"
-          iconSVG={ArrowBlack}
-          iconPosition="right"
-          containerStyle={styles.containerCenteredText}
-          routeRedirection="LobbyLoadScreen"
-        />
+        {loans.length > 0 && (
+          <>
+            {loans.map((loan, key) => (
+              <Cardloan key={key} loan={loan} />
+            ))}
+          </>
+        )}
+
+        {loans.length <= 0 && (
+          <>
+            <CenteredTextButton
+              text="¡Todavía no tienes un préstamo activo!"
+              buttonText="Aplicar ahora"
+              iconSVG={ArrowBlack}
+              iconPosition="right"
+              containerStyle={styles.containerCenteredText}
+              routeRedirection="LobbyLoadScreen"
+            />
+          </>
+        )}
 
         <Divider style={styles.divider} />
 
         <TwoTextRow
           firstText="Información Personal"
           secondText="Cambiar Datos"
-          iconSVG={ArrowBlue}
+          iconSVG={ArrowSimpleBlack}
           containerStyle={styles.containerTextInfoPersonal}
+          secondTextStyle={styles.secondText}
         />
 
         {individualCustomer.status === StatusOnboarding.COMPLETED && (
@@ -82,11 +130,14 @@ const styles = StyleSheet.create({
   textPrimary: {
     marginTop: 0,
   },
+  secondText: {
+    color: '#000',
+  },
   containerTextLoadActive: {
     marginTop: 25,
   },
   containerCenteredText: {
-    marginTop: 20,
+    marginTop: 0,
   },
   containerTextInfoPersonal: {
     marginTop: 5,

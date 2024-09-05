@@ -193,4 +193,39 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(130, 130, 130, 0.20)',
   },
+  statusPending: {
+    borderColor: '#333',
+    borderWidth: 1,
+    backgroundColor: '#FFF',
+  },
+  statusCompleted: {
+    borderWidth: 1,
+    borderColor: '#16AE65',
+    color: '#16AE65',
+    backgroundColor: 'rgba(22, 174, 101, 0.10)',
+  },
+  statusFailed: {
+    color: '#F4485D',
+    borderWidth: 1,
+    borderColor: '#F4485D',
+    backgroundColor: 'rgba(244, 72, 93, 0.10)',
+  },
+  statusCompletedPending: {
+    color: '#333',
+    fontFamily: globalFontFamily.interMedium,
+    fontSize: 12,
+    fontWeight: '400',
+  },
+  statusCompletedText: {
+    color: '#16AE65',
+    fontFamily: globalFontFamily.interMedium,
+    fontSize: 12,
+    fontWeight: '400',
+  },
+  statusFailedText: {
+    color: '#F4485D',
+    fontFamily: globalFontFamily.interMedium,
+    fontSize: 12,
+    fontWeight: '400',
+  },
 });

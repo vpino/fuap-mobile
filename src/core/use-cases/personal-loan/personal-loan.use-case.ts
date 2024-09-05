@@ -1,4 +1,5 @@
 import {HttpAdapter} from '../../../config/adapters/http/http.adapter';
+import {ParamsDTO} from '../../../infrastructure/dtos/params.dto';
 import {
   LoanDetailsMounthlyDTO,
   UpdateAssetsDto,
@@ -94,6 +95,39 @@ export const updateTermsAndConditionsUseCase = async (
     console.log(
       `Error submitting expense details - updateTermsAndConditionsUseCase: ${error}`,
     );
+    throw new Error(error);
+  }
+};
+
+export const getAllByCustomer = async (
+  fetcher: HttpAdapter,
+  body: ParamsDTO<any>,
+): Promise<any> => {
+  try {
+    const response = await fetcher.post<any>(
+      '/personal-loan/get-all-by-customer',
+      body,
+    );
+    return response;
+  } catch (error: any) {
+    console.log(
+      `Error fetching loans by customer - getAllByCustomer: ${error}`,
+    );
+    throw new Error(error);
+  }
+};
+
+export const getLastCreatedByCustomer = async (
+  fetcher: HttpAdapter,
+  id: string,
+): Promise<any> => {
+  try {
+    const response = await fetcher.get<any>(
+      `/personal-loan/${id}/get-last-created`,
+    );
+    return response;
+  } catch (error: any) {
+    console.log(`Error fetching loans by customer - getLastCreated: ${error}`);
     throw new Error(error);
   }
 };

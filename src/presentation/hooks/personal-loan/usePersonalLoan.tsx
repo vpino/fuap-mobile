@@ -8,6 +8,7 @@ import {
   UpdateTermsAndConditionsDto,
   UpdateTermsLoanDto,
 } from '../../../infrastructure/dtos/personal-loan/personal-loan.dto';
+import {ParamsDTO} from '../../../infrastructure/dtos/params.dto';
 
 interface PersonalLoanProps {
   id: string;
@@ -111,11 +112,45 @@ export const usePersonalLoan = ({id}: PersonalLoanProps) => {
     }
   };
 
+  const getAllByCustomer = async (body: ParamsDTO<any>) => {
+    try {
+      setIsLoading(true);
+      const response = await UseCases.getAllByCustomer(
+        baseAdapterFetcher,
+        body,
+      );
+
+      return response;
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getLastCreatedByCustomer = async () => {
+    try {
+      setIsLoading(true);
+      const response = await UseCases.getLastCreatedByCustomer(
+        baseAdapterFetcher,
+        id,
+      );
+
+      return response;
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     loadLoanDetailsMounthly,
     updateTermsLoan,
     updateAssets,
     updateTermsAndConditions,
     isLoading,
+    getAllByCustomer,
+    getLastCreatedByCustomer,
   };
 };
