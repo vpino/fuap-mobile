@@ -38,9 +38,7 @@ export const LoginScreen = () => {
 
       setSnackbarMessage('Login Successful');
 
-      navigation.navigate('BottomNavigator', {
-        screen: 'Home',
-      });
+      navigation.navigate('HomeScreen');
     } catch (error: any) {
       setSnackbarMessage(
         error?.message ||

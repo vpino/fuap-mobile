@@ -41,8 +41,6 @@ export const HomeLoanScreen = () => {
 
   const step = StatusHomeLoanSteps[homeLoan.status ?? 'PROPERTY_USAGE'];
 
-  console.log('status', status);
-
   useEffect(() => {
     // if (status === StatusHomeLoan.CREATED) {
     //   navigation.navigate('HomeScreen');
