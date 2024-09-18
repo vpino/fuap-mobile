@@ -39,12 +39,6 @@ export const HomeScreen = () => {
   }`;
 
   useEffect(() => {
-    if (!id) {
-      navigation.navigate('LoginScreen');
-
-      return;
-    }
-
     const fetchLoan = async () => {
       try {
         const personalLoan = await getLastCreatedByCustomer();

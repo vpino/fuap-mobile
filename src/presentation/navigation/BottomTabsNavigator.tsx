@@ -48,9 +48,6 @@ export const BottomTabNavigator = () => {
         },
         tabBarLabel: () => null,
       })}>
-      <Tab.Screen name="HomeScreen" component={HomeScreen} />
-      <Tab.Screen name="Loans" component={LobbyLoanScreen} />
-      <Tab.Screen name="SubmissionsScreen" component={SubmmissionsScreen} />
       <Tab.Screen
         name="LoginScreen"
         component={LoginScreen}
@@ -58,6 +55,10 @@ export const BottomTabNavigator = () => {
           tabBarButton: () => null,
         }}
       />
+      <Tab.Screen name="HomeScreen" component={HomeScreen} />
+      <Tab.Screen name="Loans" component={LobbyLoanScreen} />
+      <Tab.Screen name="SubmissionsScreen" component={SubmmissionsScreen} />
+
       <Tab.Screen
         name="RegisterScreen"
         component={RegisterScreen}
