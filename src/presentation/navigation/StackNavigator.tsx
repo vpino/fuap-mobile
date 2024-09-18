@@ -9,9 +9,10 @@ import {ProfileScreen} from '../screens/profile/ProfileScreen';
 import {SettingsScreen} from '../screens/settings/SettingsScreen';
 import {LobbyOnboardingScreen} from '../screens/lobby-onbording/LobbyOnbordingScreen';
 import {OnboardingScreen} from '../screens/onboarding/OnboardingScreen';
-import {LobbyLoadScreen} from '../screens/lobby-load/LobbyLoadScreen';
+import {LobbyLoanScreen} from '../screens/lobby-loan/LobbyLoanScreen';
 import {PersonalLoadScreen} from '../screens/personal-loan/PersonalLoanScreen';
-import {SubmmissionsScreen} from '../screens/submmissions/SubmmissionsScreen';
+import {SubmmissionsScreen} from '../screens/submissions/SubmissionsScreen';
+import {HomeLoanScreen} from '../screens/home-loan/HomeLoanScreen';
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -21,9 +22,10 @@ export type RootStackParams = {
   SettingsScreen: undefined;
   LobbyOnboardingScreen: undefined;
   OnboardingScreen: undefined;
-  LobbyLoadScreen: undefined;
+  LobbyLoanScreen: undefined;
   PersonalLoadScreen: undefined;
   SubmmissionsScreen: undefined;
+  HomeLoanScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -84,8 +86,8 @@ export const StackNavigator = () => {
       />
       <Stack.Screen
         options={{cardStyleInterpolator: fadeAnimation}}
-        name="LobbyLoadScreen"
-        component={LobbyLoadScreen}
+        name="LobbyLoanScreen"
+        component={LobbyLoanScreen}
       />
       <Stack.Screen
         options={{cardStyleInterpolator: fadeAnimation}}
@@ -96,6 +98,11 @@ export const StackNavigator = () => {
         options={{cardStyleInterpolator: fadeAnimation}}
         name="SubmmissionsScreen"
         component={SubmmissionsScreen}
+      />
+      <Stack.Screen
+        options={{cardStyleInterpolator: fadeAnimation}}
+        name="HomeLoanScreen"
+        component={HomeLoanScreen}
       />
     </Stack.Navigator>
   );

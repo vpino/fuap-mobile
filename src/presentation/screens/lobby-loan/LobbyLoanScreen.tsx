@@ -6,7 +6,7 @@ import {SubTitle} from '../../components/atoms/SubTitle';
 import ArrowWhite from '../../../../assets/svg/arrow-white.svg';
 import CardLoadAction from '../../components/molecules/CardLoadAction';
 
-export const LobbyLoadScreen = () => {
+export const LobbyLoanScreen = () => {
   return (
     <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
       <View style={globalStyles.container}>
@@ -31,7 +31,7 @@ export const LobbyLoadScreen = () => {
           subtitle="Financia la casa de tu suenos o repara la que ya posees con una primera hipoteca, una linea de creidto sobre el valor de la vivienda, una segunda hipoteca tradicional de tasa fija, ARM o hipoteca inversa."
           buttonText="Aplicar Ahora"
           ButtonIcon={ArrowWhite}
-          textRoute="HomeScreen"
+          textRoute="HomeLoanScreen"
           containerStyle={styles.containerCard}
         />
 

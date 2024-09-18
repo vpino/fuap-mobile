@@ -29,7 +29,7 @@ const CardInfoPersonal: React.FC<CardInfoPersonalProps> = ({
       </Text>
 
       <Text style={[styles.secondaryText, secondaryText]}>
-        {` ${formatDateTwoDigit(individual?.createdAt)} | ${
+        {`${formatDateTwoDigit(individual?.createdAt)} | ${
           individual?.address ?? ''
         } ${individual?.addressExtension ?? ''}`}
       </Text>
@@ -91,6 +91,8 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     borderRadius: 12,
     height: 2,
+    marginTop: 10,
+    marginBottom: 10,
   },
   containerTexts: {
     flexDirection: 'row',

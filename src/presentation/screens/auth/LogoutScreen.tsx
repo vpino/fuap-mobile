@@ -2,11 +2,10 @@ import React, {useEffect} from 'react';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {View, ActivityIndicator} from 'react-native';
 import {useAuth} from '../../hooks/auth/useAuth';
-import {RootStackParams} from '../../navigation/StackNavigator';
 
 export const LogoutScreen = () => {
   const {logout} = useAuth();
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   useEffect(() => {
     const performLogout = async () => {

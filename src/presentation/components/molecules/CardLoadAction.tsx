@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {SvgProps} from 'react-native-svg';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
-import {RootStackParams} from '../../navigation/StackNavigator';
 import {globalFontFamily} from '../../../theme/GlobalStyles';
 
 interface CardLoadActionProps {
@@ -17,7 +16,7 @@ interface CardLoadActionProps {
   subtitle: string;
   buttonText: string;
   ButtonIcon: React.FC<SvgProps>;
-  textRoute?: keyof RootStackParams;
+  textRoute?: string;
   containerStyle?: ViewStyle;
   titleStyle?: TextStyle;
   subtitleStyle?: TextStyle;
@@ -37,11 +36,13 @@ const CardLoadAction: React.FC<CardLoadActionProps> = ({
   buttonStyle,
   buttonTextStyle,
 }) => {
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const handlePress = () => {
     if (textRoute) {
-      navigation.navigate(textRoute);
+      navigation.navigate('BottomNavigator', {
+        screen: textRoute,
+      });
     }
   };
 

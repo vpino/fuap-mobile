@@ -1,4 +1,3 @@
-import {Platform} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 /* fonts */
@@ -110,7 +109,7 @@ export const globalBorder = {
 
 export const globalStyles = StyleSheet.create({
   scrollContainer: {
-    flexGrow: Platform.OS === 'ios' ? 0 : 1,
+    flexGrow: 1,
     backgroundColor: globalColors.secondary,
     // paddingBottom: 60,
   },

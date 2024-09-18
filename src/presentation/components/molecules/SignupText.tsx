@@ -1,16 +1,19 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootStackParams } from '../../navigation/StackNavigator';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 interface SignupTextProps {
   primaryText: string;
   linkText: string;
-  navigationRoute: keyof RootStackParams;
+  navigationRoute: string;
 }
 
-const SignupText: React.FC<SignupTextProps> = ({ primaryText, linkText, navigationRoute }) => {
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+const SignupText: React.FC<SignupTextProps> = ({
+  primaryText,
+  linkText,
+  navigationRoute,
+}) => {
+  const navigation = useNavigation<any>();
 
   const handleSignupPress = () => {
     navigation.navigate(navigationRoute);

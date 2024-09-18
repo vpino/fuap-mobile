@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {SvgProps} from 'react-native-svg';
 import {globalFontFamily} from '../../../theme/GlobalStyles';
-import {RootStackParams} from '../../navigation/StackNavigator';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 interface CenteredTextButtonProps {
@@ -21,7 +20,7 @@ interface CenteredTextButtonProps {
   buttonTextStyle?: TextStyle;
   iconSVG?: React.FC<SvgProps>;
   iconPosition?: 'left' | 'right';
-  routeRedirection?: keyof RootStackParams;
+  routeRedirection?: string;
 }
 
 const CenteredTextButton: React.FC<CenteredTextButtonProps> = ({
@@ -35,11 +34,13 @@ const CenteredTextButton: React.FC<CenteredTextButtonProps> = ({
   iconPosition = 'left',
   routeRedirection,
 }) => {
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const handlePress = () => {
     if (routeRedirection) {
-      navigation.navigate(routeRedirection);
+      navigation.navigate('BottomNavigator', {
+        screen: routeRedirection,
+      });
     }
   };
 

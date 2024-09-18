@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Snackbar, Divider, Text} from 'react-native-paper';
 import {useAuth} from '../../hooks/auth/useAuth';
-import {useNavigation, type NavigationProp} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {globalStyles} from '../../../theme/GlobalStyles';
 import {PrimaryButton} from '../../components/atoms/PrimaryButton';
-import {type RootStackParams} from '../../navigation/StackNavigator';
 import {TitlePrimary} from '../../components/atoms/TitlePrimary';
 import {SubTitle} from '../../components/atoms/SubTitle';
 import {TextInputWithIcon} from '../../components/atoms/TextInputWithIcon';
@@ -26,18 +25,22 @@ export const LoginScreen = () => {
     {label: 'Apple', imagenSVG: AppleLogo},
   ];
 
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
-  const {login, isLoading} = useAuth();
+  const navigation = useNavigation<any>();
+  const {login, isLoading, logout} = useAuth();
   const [snackbarVisible, setSnackbarVisible] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState('');
+  const isFocused = useIsFocused();
 
   const handleLogin = async (values: {email: string; password: string}) => {
     try {
+      await logout();
       await login(values);
 
       setSnackbarMessage('Login Successful');
 
-      navigation.navigate('HomeScreen');
+      navigation.navigate('BottomNavigator', {
+        screen: 'Home',
+      });
     } catch (error: any) {
       setSnackbarMessage(
         error?.message ||
@@ -61,6 +64,18 @@ export const LoginScreen = () => {
       )
       .required('La contraseña es obligatoria'),
   });
+
+  useEffect(() => {
+    if (isFocused) {
+      navigation.getParent()?.setOptions({
+        tabBarStyle: {display: 'none'},
+      });
+    } else {
+      navigation.getParent()?.setOptions({
+        tabBarStyle: undefined,
+      });
+    }
+  }, [isFocused, navigation]);
 
   return (
     <ScrollView contentContainerStyle={globalStyles.scrollContainer}>

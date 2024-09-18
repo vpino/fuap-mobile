@@ -9,13 +9,12 @@ import {
 } from 'react-native';
 import {SvgProps} from 'react-native-svg';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParams} from '../../navigation/StackNavigator';
 import {globalFontFamily} from '../../../theme/GlobalStyles';
 
 interface TwoTextRowProps {
   firstText: string;
   secondText: string;
-  secondTextRoute?: keyof RootStackParams;
+  secondTextRoute?: string;
   FirstTextStyle?: TextStyle;
   secondTextStyle?: TextStyle;
   containerStyle?: ViewStyle;
@@ -31,7 +30,7 @@ const TwoTextRow: React.FC<TwoTextRowProps> = ({
   containerStyle,
   iconSVG: IconSVG,
 }) => {
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const handlePress = () => {
     if (secondTextRoute) {

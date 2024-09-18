@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Snackbar, Divider, Text} from 'react-native-paper';
 import {useAuth} from '../../hooks/auth/useAuth';
 import {useNavigation, type NavigationProp} from '@react-navigation/native';
 import {globalStyles} from '../../../theme/GlobalStyles';
 import {PrimaryButton} from '../../components/atoms/PrimaryButton';
-import {type RootStackParams} from '../../navigation/StackNavigator';
 import {TitlePrimary} from '../../components/atoms/TitlePrimary';
 import {SubTitle} from '../../components/atoms/SubTitle';
 import {TextInputWithIcon} from '../../components/atoms/TextInputWithIcon';
@@ -27,7 +26,7 @@ export const RegisterScreen = () => {
     {label: 'Apple', imagenSVG: AppleLogo},
   ];
 
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
   const {signUp, isLoading} = useAuth();
   const [snackbarVisible, setSnackbarVisible] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState('');
@@ -47,7 +46,9 @@ export const RegisterScreen = () => {
       await signUp(values);
 
       setSnackbarMessage('Registro Exitoso');
-      navigation.navigate('LoginScreen');
+      navigation.navigate('BottomNavigator', {
+        screen: 'LoginScreen',
+      });
     } catch (error: any) {
       console.log('error.message', error?.message);
       setSnackbarMessage(error?.message || 'Sign Up Failed. Please try again.');
@@ -72,6 +73,16 @@ export const RegisterScreen = () => {
       .oneOf([Yup.ref('password'), ''], 'Las contraseñas deben coincidir')
       .required('Confirmar la contraseña es obligatorio'),
   });
+
+  useEffect(() => {
+    navigation
+      .getParent()
+      ?.setOptions({tabBarStyle: {display: 'none'}, tabBarVisible: false});
+    return () =>
+      navigation
+        .getParent()
+        ?.setOptions({tabBarStyle: undefined, tabBarVisible: undefined});
+  }, [navigation]);
 
   return (
     <ScrollView contentContainerStyle={globalStyles.scrollContainer}>

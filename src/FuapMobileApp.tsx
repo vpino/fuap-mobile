@@ -3,7 +3,7 @@ import React from 'react';
 import {DefaultTheme, PaperProvider} from 'react-native-paper';
 import {globalColors} from './theme/GlobalStyles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
-import { SideMenuNavigator } from './presentation/navigation/SideMenuNavigator';
+import {SideMenuNavigator} from './presentation/navigation/SideMenuNavigator';
 
 const theme = {
   ...DefaultTheme,

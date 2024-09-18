@@ -30,6 +30,7 @@ export const TextInputWithIcon: React.FC<TextInputWithIconProps> = ({
         placeholderTextColor={globalColors.colorPlaceholder}
         underlineColorAndroid="transparent"
         {...rest}
+        autoCapitalize="none"
       />
       {iconPosition === 'right' && <Icon style={styles.iconContainer} />}
     </View>

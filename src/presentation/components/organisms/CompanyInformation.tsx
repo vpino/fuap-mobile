@@ -32,6 +32,7 @@ const townOptions = [
   {key: '1', value: 'Town 1'},
   {key: '2', value: 'Town 2'},
 ];
+
 const yearOptions = [
   {key: '1 Años', value: '1 Años'},
   {key: '2 Años', value: '2 Años'},
@@ -167,7 +168,7 @@ export const CompanyInformation: React.FC<CompanyInformationProps> = ({
               setPhone(value);
             }}
             setCountryDetails={(value: any) => {
-              setFieldValue('dialCode', value);
+              setFieldValue('dialCode', value.dial_code);
             }}
             phoneStyles={styles.inputPhone}
             countryCodeTextStyles={{

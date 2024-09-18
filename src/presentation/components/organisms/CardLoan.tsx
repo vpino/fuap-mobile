@@ -4,7 +4,6 @@ import {globalFontFamily} from '../../../theme/GlobalStyles';
 import {Divider} from 'react-native-paper';
 import {ILoanPreview} from '../../../infrastructure/interfaces/home/loan-preview';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParams} from '../../navigation/StackNavigator';
 import {PrimaryButton} from '../atoms/PrimaryButton';
 import {formatDayMonth} from '../../../config/helpers/dates';
 
@@ -25,7 +24,7 @@ const Cardloan: React.FC<CardloanProps> = ({
   subTileTextStyle,
   loan,
 }) => {
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const handlePayment = async () => {
     navigation.navigate('HomeScreen');

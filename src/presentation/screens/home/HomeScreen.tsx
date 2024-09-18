@@ -15,6 +15,7 @@ import {ILoanPreview} from '../../../infrastructure/interfaces/home/loan-preview
 import ArrowSimpleBlack from '../../../../assets/svg/arrow-simple-black.svg';
 import {usePersonalLoan} from '../../hooks/personal-loan/usePersonalLoan';
 import {useAuthStore} from '../../store/auth/useAuthStore';
+import {useNavigation} from '@react-navigation/native';
 
 const formatLoanPersonal = (loan: any): ILoanPreview => {
   const idLastFourDigits = loan.id.slice(-4);
@@ -31,12 +32,19 @@ export const HomeScreen = () => {
   const {individualCustomer} = useOnboardingStore();
   const {getLastCreatedByCustomer} = usePersonalLoan({id: id ?? ''});
   const [loans, setLoans] = useState<ILoanPreview[]>([]);
+  const navigation = useNavigation<any>();
 
   const fullName = `${individualCustomer.firstName ?? 'Customer'} ${
     individualCustomer.lastName ?? ''
   }`;
 
   useEffect(() => {
+    if (!id) {
+      navigation.navigate('LoginScreen');
+
+      return;
+    }
+
     const fetchLoan = async () => {
       try {
         const personalLoan = await getLastCreatedByCustomer();
@@ -44,7 +52,6 @@ export const HomeScreen = () => {
         if (personalLoan.data) {
           const loanP = formatLoanPersonal(personalLoan.data);
           setLoans([loanP]);
-          // setLoans(prevLoans => [...prevLoans, loanP]);
         }
       } catch (error) {
         console.error('Error fetching personal loan: ', error);
@@ -52,7 +59,11 @@ export const HomeScreen = () => {
     };
 
     fetchLoan();
-  }, []);
+
+    navigation
+      .getParent()
+      ?.setOptions({tabBarStyle: {display: 'flex'}, tabBarVisible: true});
+  }, [navigation]);
 
   return (
     <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
@@ -69,7 +80,7 @@ export const HomeScreen = () => {
           iconSVG={ArrowSimpleBlack}
           containerStyle={styles.containerTextLoadActive}
           secondTextStyle={styles.secondText}
-          secondTextRoute="SubmmissionsScreen"
+          secondTextRoute="SubmissionsScreen"
         />
 
         {loans.length > 0 && (
@@ -88,7 +99,7 @@ export const HomeScreen = () => {
               iconSVG={ArrowBlack}
               iconPosition="right"
               containerStyle={styles.containerCenteredText}
-              routeRedirection="LobbyLoadScreen"
+              routeRedirection="LobbyLoanScreen"
             />
           </>
         )}

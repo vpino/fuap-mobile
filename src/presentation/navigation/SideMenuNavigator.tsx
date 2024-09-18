@@ -3,13 +3,13 @@ import {
   createDrawerNavigator,
   DrawerToggleButton,
 } from '@react-navigation/drawer';
-import {StackNavigator} from './StackNavigator';
 import {ProfileScreen} from '../screens/profile/ProfileScreen';
 import {SupportScreen} from '../screens/support/SupportScreen';
 import {globalColors, globalFontFamily} from '../../theme/GlobalStyles';
 import {Image, StyleSheet, useWindowDimensions} from 'react-native';
 import Header from '../components/organisms/Header';
 import LoginScreen from '../screens/auth/LoginScreen';
+import {BottomTabNavigator} from './BottomTabsNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,6 +18,7 @@ export const SideMenuNavigator = () => {
 
   return (
     <Drawer.Navigator
+      initialRouteName="LoginScreen"
       screenOptions={{
         headerLeft: () => <Header />,
         headerRight: props => <DrawerToggleButton {...props} />,
@@ -27,8 +28,8 @@ export const SideMenuNavigator = () => {
         drawerActiveTintColor: globalColors.primary,
       }}>
       <Drawer.Screen
-        name="StackNavigator"
-        component={StackNavigator}
+        name="BottomNavigator"
+        component={BottomTabNavigator}
         options={{
           drawerItemStyle: {display: 'none'},
           headerTitle: '',

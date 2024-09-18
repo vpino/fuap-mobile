@@ -8,10 +8,9 @@ import {SubTitle} from '../../components/atoms/SubTitle';
 import ArrowWhite from '../../../../assets/svg/arrow-white.svg';
 import {PrimaryButton} from '../../components/atoms/PrimaryButton';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParams} from '../../navigation/StackNavigator';
 
 export const LobbyOnboardingScreen = () => {
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   return (
     <ScrollView contentContainerStyle={globalStyles.scrollContainer}>

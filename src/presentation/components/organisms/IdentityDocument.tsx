@@ -162,6 +162,16 @@ export const IdentityDocument: React.FC<IdentityDocumentProps> = ({send}) => {
             isLoading={isLoading}
           />
 
+          {Object.keys(errors).length > 0 && (
+            <View style={{marginTop: 20}}>
+              {Object.keys(errors).map(key => (
+                <Text key={key} style={globalStyles.errorText}>
+                  {errors[key as keyof typeof errors]}
+                </Text>
+              ))}
+            </View>
+          )}
+
           <Snackbar
             visible={snackbarVisible}
             onDismiss={onDismissSnackBar}

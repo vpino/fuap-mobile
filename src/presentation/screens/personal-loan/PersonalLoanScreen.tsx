@@ -10,7 +10,6 @@ import {TermsPersonalLoanForm} from '../../components/organisms/TermsPersonalLoa
 import {AssetsPersonalLoanForm} from '../../components/organisms/AssetsPersonalLoanForm';
 import {AcceptTermConditionsForm} from '../../components/organisms/AcceptTermConditionsForm';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParams} from '../../navigation/StackNavigator';
 
 enum StatusPersonalLoanSteps {
   MOUNTHLY_BUDGET = 1,
@@ -21,7 +20,7 @@ enum StatusPersonalLoanSteps {
 }
 
 export const PersonalLoadScreen = () => {
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const {personalLoan} = usePersonalLoanStore();
 

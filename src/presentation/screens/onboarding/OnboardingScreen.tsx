@@ -15,7 +15,6 @@ import {OccupationInformation} from '../../components/organisms/OccupationInform
 import {CompanyInformation} from '../../components/organisms/CompanyInformation';
 import {ContactInformation} from '../../components/organisms/ContactInformation';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParams} from '../../navigation/StackNavigator';
 
 enum StatusOnboarding {
   LOAD_NAMES = 'loadNames',
@@ -44,7 +43,7 @@ enum ProgressBarEnum {
 export const OnboardingScreen = () => {
   const [state, send] = useMachine(onboardingMachine);
   const {individualCustomer} = useOnboardingStore();
-  const navigation = useNavigation<NavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const status = StatusOnboarding[individualCustomer.status ?? 'LOAD_NAMES'];
 

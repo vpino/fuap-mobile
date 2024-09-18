@@ -1,11 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native-paper';
 import {globalColors, globalFontFamily} from '../../../theme/GlobalStyles';
-import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, TextStyle} from 'react-native';
 
 interface Props {
   label: string;
-  styles?: StyleProp<ViewStyle>;
+  styles?: StyleProp<TextStyle>;
 }
 
 export const SubTitle = ({label, styles}: Props) => {
