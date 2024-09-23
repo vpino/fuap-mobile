@@ -1,12 +1,21 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 import {SubTitle} from '../atoms/SubTitle';
 import {TitlePrimary} from '../atoms/TitlePrimary';
-import {Divider} from 'react-native-paper';
+import {Divider, Snackbar} from 'react-native-paper';
 import {useOnboardingStore} from '../../store/onboarding/useOnboardingStore';
 import {globalFontFamily} from '../../../theme/GlobalStyles';
 import ArrowGreen from '../../../../assets/svg/arrow-green.svg';
 import MailIcon from '../../../../assets/svg/mail-icon.svg';
+import {useHomeLoanStore} from '../../store/home-loan/useHomeLoanStore';
+import {useHomeLoan} from '../../hooks/home-loan/useHomeLoan';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 type OfferType = {
   id: string;
@@ -42,10 +51,44 @@ const offers: OfferType[] = [
 
 export default function LoanApproval() {
   const {individualCustomer} = useOnboardingStore();
+  const {homeLoan, resetHomeLoan} = useHomeLoanStore();
+
+  const {updateAcceptHomeLoan} = useHomeLoan({id: homeLoan.id ?? ''});
 
   const [activeTab, setActiveTab] = useState<string>('A');
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const activeOffer = offers.find(offer => offer.id === activeTab);
+
+  const navigation = useNavigation<NavigationProp<any>>();
+
+  const handleAcceptHomeLoan = async (values: {condition: boolean}) => {
+    setIsLoading(true);
+
+    try {
+      await updateAcceptHomeLoan({
+        condition: values.condition,
+      });
+
+      resetHomeLoan();
+
+      navigation.navigate('HomeScreen');
+
+      setSnackbarMessage('Información actualizada exitosamente.');
+    } catch (error: any) {
+      setSnackbarMessage(
+        error?.message ||
+          'Hubo un error al actualizar los datos, por favor intente de nuevo.',
+      );
+    } finally {
+      setSnackbarVisible(true);
+      setIsLoading(false);
+    }
+  };
+
+  const onDismissSnackBar = () => setSnackbarVisible(false);
 
   return (
     <View>
@@ -100,10 +143,20 @@ export default function LoanApproval() {
             </View>
           </View>
         )}
-        <TouchableOpacity style={styles.talkButton}>
+        <TouchableOpacity
+          style={styles.talkButton}
+          onPress={() => {
+            handleAcceptHomeLoan({condition: true});
+          }}>
           <Text style={styles.talkButtonText}>
             Aceptar Oferta
-            <ArrowGreen />
+            <View style={{paddingLeft: 5}}>
+              {isLoading ? (
+                <ActivityIndicator color="#16AE65" />
+              ) : (
+                <ArrowGreen />
+              )}
+            </View>
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.acceptButton}>
@@ -112,6 +165,19 @@ export default function LoanApproval() {
           </Text>
         </TouchableOpacity>
       </View>
+
+      <Snackbar
+        visible={snackbarVisible}
+        onDismiss={onDismissSnackBar}
+        duration={3000}
+        action={{
+          label: 'Dismiss',
+          onPress: () => {
+            onDismissSnackBar();
+          },
+        }}>
+        {snackbarMessage}
+      </Snackbar>
     </View>
   );
 }

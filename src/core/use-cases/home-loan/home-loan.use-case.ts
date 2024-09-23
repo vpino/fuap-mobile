@@ -1,10 +1,12 @@
 import {HttpAdapter} from '../../../config/adapters/http/http.adapter';
 import {
+  AcceptHomeLoanDto,
   PropertyUsageDto,
   TypeHomeDto,
   UpdateAddressHomeDto,
   UpdateAssetsDto,
   UpdateHomeLoanMounthlyDetailsDto,
+  UpdateInfoAfterRejectedDto,
   UpdatePaymentInitialDto,
   UpdatePriceHomeDto,
   UpdateTermsAndConditionsDto,
@@ -202,6 +204,44 @@ export const updateHomeLoanAddresslUseCase = async (
   } catch (error: any) {
     console.log(
       `Error updating payment initial - updatePaymentInitialUseCase: ${error}`,
+    );
+    throw new Error(error);
+  }
+};
+
+export const updateHomeLoanAccept = async (
+  fetcher: HttpAdapter,
+  id: string,
+  body: AcceptHomeLoanDto,
+): Promise<any> => {
+  try {
+    const response = await fetcher.put<any>(
+      `/home-loan/${id}/accept-home-loan`,
+      body,
+    );
+    return response;
+  } catch (error: any) {
+    console.log(
+      `Error submitting expense details - updateHomeLoanAccept: ${error}`,
+    );
+    throw new Error(error);
+  }
+};
+
+export const updateHomeLoanAfterRejected = async (
+  fetcher: HttpAdapter,
+  id: string,
+  body: UpdateInfoAfterRejectedDto,
+): Promise<any> => {
+  try {
+    const response = await fetcher.put<any>(
+      `/home-loan/${id}/update-info-rejected`,
+      body,
+    );
+    return response;
+  } catch (error: any) {
+    console.log(
+      `Error updating price of the home - updateHomeLoanAfterRejected: ${error}`,
     );
     throw new Error(error);
   }

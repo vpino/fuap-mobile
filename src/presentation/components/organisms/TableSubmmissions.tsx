@@ -9,8 +9,11 @@ import {ParamsDTO} from '../../../infrastructure/dtos/params.dto';
 import {usePersonalLoan} from '../../hooks/personal-loan/usePersonalLoan';
 import {formatDateTwoDigit} from '../../../config/helpers/dates';
 import {formatAmount} from '../../../config/helpers/number';
+import {useHomeLoan} from '../../hooks/home-loan/useHomeLoan';
 
 interface TableSubmmissionsProps {}
+
+type TypeLoans = 'Personal' | 'Casa' | 'Tarjeta de credito';
 
 const loansOptions = [
   {key: 'LOAN', value: 'Personal'},
@@ -20,7 +23,7 @@ const loansOptions = [
 
 const statusLoanOptions = [
   {key: 'ALL', value: 'Todos'},
-  {key: 'COMPLETED', value: 'Aprobado'},
+  {key: 'COMPLETED', value: 'Completado'},
   {key: 'FAILED', value: 'Rechazado'},
   {key: 'CREATED', value: 'En Progreso'},
 ];
@@ -40,7 +43,7 @@ const convertDataToTable = (data: any[]): RowData[][] => {
 
   return data?.map(item => {
     const date = formatDateTwoDigit(item?.createdAt);
-    const amount = formatAmount(item?.amount);
+    const amount = formatAmount(item?.amount || item?.priceHome);
     const status = mapStatus(item?.status);
 
     return [{value: date}, {value: amount}, status];
@@ -58,10 +61,10 @@ const mapStatus = (status: string): {value: string; status?: StatusType} => {
   return statusMap[status] || {value: status, status: undefined};
 };
 
-type StatusMapKey = 'Aprobado' | 'En Progreso' | 'Rechazado' | 'Todos';
+type StatusMapKey = 'Completado' | 'En Progreso' | 'Rechazado' | 'Todos';
 
 const reverValueToStatus: Record<StatusMapKey, string> = {
-  Aprobado: 'COMPLETED',
+  Completado: 'COMPLETED',
   'En Progreso': 'CREATED',
   Rechazado: 'FAILED',
   Todos: '',
@@ -70,30 +73,35 @@ const reverValueToStatus: Record<StatusMapKey, string> = {
 export const TableSubmmissions: React.FC<TableSubmmissionsProps> = ({}) => {
   const {id} = useAuthStore();
   const {getAllByCustomer} = usePersonalLoan({id: id ?? ''});
+  const {getAllHomeLoanByCustomer} = useHomeLoan({id: id ?? ''});
 
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [dataTable, setDataTable] = useState<RowData[][]>([]);
   const [status, setStatus] = useState<string>('');
-  const [typeLoan, setTypeLoan] = useState<string>('');
-  // const [isLoading, setIsLoading] = useState(false);
+  const [typeLoan, setTypeLoan] = useState<string>('Personal');
 
   const handleSearchLoad = useCallback(
     async (statusLoan: string, type: string) => {
       try {
-        console.log('type', type);
-
         params.filter = {
           customer: {id},
         };
 
         if (statusLoan) {
           params.filter = {
+            ...params.filter,
             status: statusLoan,
           };
         }
 
-        const response = await getAllByCustomer(params);
+        const getLoans: Record<TypeLoans, () => Promise<any>> = {
+          Personal: async () => await getAllByCustomer(params),
+          Casa: async () => await getAllHomeLoanByCustomer(params),
+          'Tarjeta de credito': async () => [],
+        };
+
+        const response = await getLoans[type as TypeLoans]();
 
         setDataTable(convertDataToTable(response.data));
       } catch (error: any) {
@@ -104,7 +112,7 @@ export const TableSubmmissions: React.FC<TableSubmmissionsProps> = ({}) => {
         setSnackbarVisible(true);
       }
     },
-    [id, getAllByCustomer],
+    [id, getAllByCustomer, getAllHomeLoanByCustomer],
   );
 
   const onDismissSnackBar = () => setSnackbarVisible(false);
@@ -139,7 +147,7 @@ export const TableSubmmissions: React.FC<TableSubmmissionsProps> = ({}) => {
             save="value"
             boxStyles={styles.inputSelect}
             dropdownStyles={styles.dropDownStyleSelect}
-            placeholder="Aprobado"
+            placeholder="Todos"
             searchPlaceholder="Buscar"
             notFoundText="No encontrado"
           />

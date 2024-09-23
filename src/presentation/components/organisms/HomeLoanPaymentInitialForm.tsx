@@ -69,7 +69,7 @@ export const HomeLoanPaymentInitialForm: React.FC<
   return (
     <Formik
       initialValues={{
-        percentageInitial: homeLoan.percentageInitial ?? '',
+        percentageInitial: homeLoan.percentageInitial ?? '25%',
         paymentInitial: isNaN(Number(homeLoan.paymentInitial))
           ? 0
           : Number(homeLoan.paymentInitial) ?? 0,

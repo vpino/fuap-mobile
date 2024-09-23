@@ -35,3 +35,12 @@ export interface UpdateAssetsDto {
   assets: string[];
   assetsAmount: number;
 }
+
+export interface AcceptHomeLoanDto {
+  condition: boolean;
+}
+
+export interface UpdateInfoAfterRejectedDto {
+  priceHome: number;
+  paymentInitial: number;
+}

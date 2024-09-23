@@ -3,11 +3,13 @@ import * as UseCases from '../../../core/use-cases';
 import {baseAdapterFetcher} from '../../../config/adapters/base.adapter';
 import {useHomeLoanStore} from '../../store/home-loan/useHomeLoanStore';
 import {
+  AcceptHomeLoanDto,
   PropertyUsageDto,
   TypeHomeDto,
   UpdateAddressHomeDto,
   UpdateAssetsDto,
   UpdateHomeLoanMounthlyDetailsDto,
+  UpdateInfoAfterRejectedDto,
   UpdatePaymentInitialDto,
   UpdatePriceHomeDto,
   UpdateTermsAndConditionsDto,
@@ -184,7 +186,7 @@ export const useHomeLoan = ({id}: HomeLoanProps) => {
     }
   };
 
-  const getAllByCustomer = async (body: ParamsDTO<any>) => {
+  const getAllHomeLoanByCustomer = async (body: ParamsDTO<any>) => {
     try {
       setIsLoading(true);
       const response = await UseCases.getAllHomeLoanByCustomer(
@@ -241,6 +243,50 @@ export const useHomeLoan = ({id}: HomeLoanProps) => {
     }
   };
 
+  const updateAcceptHomeLoan = async (body: AcceptHomeLoanDto) => {
+    try {
+      setIsLoading(true);
+      const response = await UseCases.updateHomeLoanAccept(
+        baseAdapterFetcher,
+        id,
+        body,
+      );
+
+      updateHomeLoan({
+        status: response?.status,
+      });
+
+      return response;
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updateInfoAfterRejected = async (body: UpdateInfoAfterRejectedDto) => {
+    try {
+      setIsLoading(true);
+      const response = await UseCases.updateHomeLoanAfterRejected(
+        baseAdapterFetcher,
+        id,
+        body,
+      );
+
+      updateHomeLoan({
+        priceHome: response?.priceHome,
+        paymentInitial: response?.paymentInitial,
+        status: response?.status,
+      });
+
+      return response;
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     loadLoanDetailsMounthly,
     updatePropertyUsage,
@@ -250,8 +296,10 @@ export const useHomeLoan = ({id}: HomeLoanProps) => {
     updateAssets,
     updateTermsAndConditions,
     isLoading,
-    getAllByCustomer,
+    getAllHomeLoanByCustomer,
     getLastCreatedByCustomer,
     updateHomeLoanAddress,
+    updateAcceptHomeLoan,
+    updateInfoAfterRejected,
   };
 };
