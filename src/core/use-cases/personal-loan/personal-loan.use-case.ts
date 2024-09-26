@@ -1,8 +1,10 @@
 import {HttpAdapter} from '../../../config/adapters/http/http.adapter';
 import {ParamsDTO} from '../../../infrastructure/dtos/params.dto';
 import {
+  AcceptPersonalLoanDto,
   LoanDetailsMounthlyDTO,
   UpdateAssetsDto,
+  UpdateInfoAfterRejectedDto,
   UpdateTermsAndConditionsDto,
   UpdateTermsLoanDto,
 } from '../../../infrastructure/dtos/personal-loan/personal-loan.dto';
@@ -128,6 +130,44 @@ export const getLastCreatedByCustomer = async (
     return response;
   } catch (error: any) {
     console.log(`Error fetching loans by customer - getLastCreated: ${error}`);
+    throw new Error(error);
+  }
+};
+
+export const updatePersonalLoanAccept = async (
+  fetcher: HttpAdapter,
+  id: string,
+  body: AcceptPersonalLoanDto,
+): Promise<any> => {
+  try {
+    const response = await fetcher.put<any>(
+      `/personal-loan/${id}/accept-personal-loan`,
+      body,
+    );
+    return response;
+  } catch (error: any) {
+    console.log(
+      `Error submitting expense details - updatePersonalLoanAccept: ${error}`,
+    );
+    throw new Error(error);
+  }
+};
+
+export const updatePersonalLoanAfterRejected = async (
+  fetcher: HttpAdapter,
+  id: string,
+  body: UpdateInfoAfterRejectedDto,
+): Promise<any> => {
+  try {
+    const response = await fetcher.put<any>(
+      `/personal-loan/${id}/update-info-rejected`,
+      body,
+    );
+    return response;
+  } catch (error: any) {
+    console.log(
+      `Error updating the personal - updatePersonalLoanAfterRejected: ${error}`,
+    );
     throw new Error(error);
   }
 };

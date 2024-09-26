@@ -8,7 +8,6 @@ interface HomeLoanState {
   resetHomeLoan: () => void;
 }
 
-// Define el estado inicial de homeLoan
 const initialHomeLoan: HomeLoan = {
   id: '',
   propertyUsage: '',

@@ -26,3 +26,12 @@ export interface EmploymentDetailsDTO {
 export interface UpdateTermsAndConditionsDto {
   tc: boolean;
 }
+
+export interface AcceptPersonalLoanDto {
+  condition: boolean;
+}
+
+export interface UpdateInfoAfterRejectedDto {
+  amount: number;
+  duration: string;
+}

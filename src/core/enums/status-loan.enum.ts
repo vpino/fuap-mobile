@@ -4,4 +4,6 @@ export enum StatusPersonalLoan {
   ASSETS = 'ASSETS',
   TC = 'TC',
   CREATED = 'CREATED',
+  IN_PROCESS = 'IN_PROCESS',
+  FAILED = 'FAILED',
 }

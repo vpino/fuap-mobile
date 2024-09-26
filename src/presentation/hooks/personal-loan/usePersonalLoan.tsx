@@ -3,8 +3,10 @@ import * as UseCases from '../../../core/use-cases';
 import {baseAdapterFetcher} from '../../../config/adapters/base.adapter';
 import {usePersonalLoanStore} from '../../store/personal-loan/usePersonalLoanStore';
 import {
+  AcceptPersonalLoanDto,
   LoanDetailsMounthlyDTO,
   UpdateAssetsDto,
+  UpdateInfoAfterRejectedDto,
   UpdateTermsAndConditionsDto,
   UpdateTermsLoanDto,
 } from '../../../infrastructure/dtos/personal-loan/personal-loan.dto';
@@ -144,6 +146,50 @@ export const usePersonalLoan = ({id}: PersonalLoanProps) => {
     }
   };
 
+  const updateAcceptPersonalLoan = async (body: AcceptPersonalLoanDto) => {
+    try {
+      setIsLoading(true);
+      const response = await UseCases.updatePersonalLoanAccept(
+        baseAdapterFetcher,
+        id,
+        body,
+      );
+
+      updatePersonalLoan({
+        status: response?.status,
+      });
+
+      return response;
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updateInfoAfterRejected = async (body: UpdateInfoAfterRejectedDto) => {
+    try {
+      setIsLoading(true);
+      const response = await UseCases.updatePersonalLoanAfterRejected(
+        baseAdapterFetcher,
+        id,
+        body,
+      );
+
+      updatePersonalLoan({
+        amount: response?.amount,
+        duration: response?.duration,
+        status: response?.status,
+      });
+
+      return response;
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     loadLoanDetailsMounthly,
     updateTermsLoan,
@@ -152,5 +198,7 @@ export const usePersonalLoan = ({id}: PersonalLoanProps) => {
     isLoading,
     getAllByCustomer,
     getLastCreatedByCustomer,
+    updateAcceptPersonalLoan,
+    updateInfoAfterRejected,
   };
 };

@@ -14,7 +14,7 @@ import {HomeLoanMonthlyBudgetForm} from '../../components/organisms/HomeLoanMont
 import {AssetsHomeLoanForm} from '../../components/organisms/AssetsHomeLoanForm';
 import {HomeLoanAcceptTermConditionsForm} from '../../components/organisms/HomeLoanAcceptTermConditionsForm';
 import HomeLoanRejected from '../../components/organisms/HomeLoanRejected';
-import LoanApproval from '../../components/organisms/LoanApproval';
+import HomeLoanApproval from '../../components/organisms/HomeLoanApproval';
 
 enum StatusHomeLoanSteps {
   PROPERTY_USAGE = 1,
@@ -62,8 +62,8 @@ export const HomeLoanScreen = () => {
         )}
         {status === StatusHomeLoan.ASSETS && <AssetsHomeLoanForm />}
         {status === StatusHomeLoan.TC && <HomeLoanAcceptTermConditionsForm />}
-        {status === StatusHomeLoan.CREATED && <LoanApproval />}
-        {status === StatusHomeLoan.IN_PROCESS && <LoanApproval />}
+        {status === StatusHomeLoan.CREATED && <HomeLoanApproval />}
+        {status === StatusHomeLoan.IN_PROCESS && <HomeLoanApproval />}
         {status === StatusHomeLoan.FAILED && <HomeLoanRejected />}
       </View>
     </ScrollView>

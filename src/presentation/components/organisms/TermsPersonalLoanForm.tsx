@@ -79,7 +79,7 @@ export const TermsPersonalLoanForm: React.FC<
           <SliderComponent
             leftText="Duración del prestamo"
             rightText="Months"
-            minimumValue={1}
+            minimumValue={0}
             maximumValue={12}
             onValueChange={value => setFieldValue('duration', value)}
           />

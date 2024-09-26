@@ -49,7 +49,7 @@ const offers: OfferType[] = [
   },
 ];
 
-export default function LoanApproval() {
+export default function HomeLoanApproval() {
   const {individualCustomer} = useOnboardingStore();
   const {homeLoan, resetHomeLoan} = useHomeLoanStore();
 

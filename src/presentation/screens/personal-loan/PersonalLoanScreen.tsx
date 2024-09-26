@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {globalStyles} from '../../../theme/GlobalStyles';
 import BackButton from '../../components/molecules/BackButton';
@@ -9,31 +9,26 @@ import {StatusPersonalLoan} from '../../../core/enums/status-loan.enum';
 import {TermsPersonalLoanForm} from '../../components/organisms/TermsPersonalLoanForm';
 import {AssetsPersonalLoanForm} from '../../components/organisms/AssetsPersonalLoanForm';
 import {AcceptTermConditionsForm} from '../../components/organisms/AcceptTermConditionsForm';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import PersonalLoanApproval from '../../components/organisms/PersonalLoanApproval';
+import PersonalLoanRejected from '../../components/organisms/PersonalLoanRejected';
 
 enum StatusPersonalLoanSteps {
   MOUNTHLY_BUDGET = 1,
   TEMRS_LOAN = 2,
   ASSETS = 3,
   TC = 4,
-  CREATED = 4,
+  CREATED = 5,
+  IN_PROCESS = 5,
+  FAILED = 5,
 }
 
 export const PersonalLoadScreen = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
-
   const {personalLoan} = usePersonalLoanStore();
 
   const status = personalLoan.status ?? 'MOUNTHLY_BUDGET';
 
   const step =
     StatusPersonalLoanSteps[personalLoan.status ?? 'MOUNTHLY_BUDGET'];
-
-  useEffect(() => {
-    if (status === StatusPersonalLoan.CREATED) {
-      navigation.navigate('HomeScreen');
-    }
-  }, [status, navigation]);
 
   return (
     <ScrollView
@@ -43,13 +38,16 @@ export const PersonalLoadScreen = () => {
         <BackButton />
         <StepIndicator
           currentStep={step}
-          totalSteps={4}
+          totalSteps={5}
           containerStyle={styles.containerIndicator}
         />
         {status === StatusPersonalLoan.MOUNTHLY_BUDGET && <MonthlyBudgetForm />}
         {status === StatusPersonalLoan.TEMRS_LOAN && <TermsPersonalLoanForm />}
         {status === StatusPersonalLoan.ASSETS && <AssetsPersonalLoanForm />}
         {status === StatusPersonalLoan.TC && <AcceptTermConditionsForm />}
+        {status === StatusPersonalLoan.CREATED && <PersonalLoanApproval />}
+        {status === StatusPersonalLoan.IN_PROCESS && <PersonalLoanApproval />}
+        {status === StatusPersonalLoan.FAILED && <PersonalLoanRejected />}
       </View>
     </ScrollView>
   );

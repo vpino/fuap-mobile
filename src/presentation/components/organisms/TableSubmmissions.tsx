@@ -55,6 +55,7 @@ const statusMap: Record<string, {value: string; status: StatusType}> = {
   PENDING: {value: 'En Progreso', status: 'PENDING'},
   FAILED: {value: 'Rechazado', status: 'FAILED'},
   CREATED: {value: 'En Progreso', status: 'PENDING'},
+  IN_PROCESS: {value: 'En Progreso', status: 'PENDING'},
 };
 
 const mapStatus = (status: string): {value: string; status?: StatusType} => {
