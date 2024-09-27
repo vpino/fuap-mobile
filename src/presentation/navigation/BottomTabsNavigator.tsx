@@ -14,6 +14,7 @@ import {LobbyOnboardingScreen} from '../screens/lobby-onbording/LobbyOnbordingSc
 import {OnboardingScreen} from '../screens/onboarding/OnboardingScreen';
 import {PersonalLoadScreen} from '../screens/personal-loan/PersonalLoanScreen';
 import {HomeLoanScreen} from '../screens/home-loan/HomeLoanScreen';
+import {DetailLoanScreen} from '../screens/detail-loan/DetailLoanScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -111,6 +112,13 @@ export const BottomTabNavigator = () => {
       <Tab.Screen
         name="HomeLoanScreen"
         component={HomeLoanScreen}
+        options={{
+          tabBarButton: () => null,
+        }}
+      />
+      <Tab.Screen
+        name="DetailLoanScreen"
+        component={DetailLoanScreen}
         options={{
           tabBarButton: () => null,
         }}

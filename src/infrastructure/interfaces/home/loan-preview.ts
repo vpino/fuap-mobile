@@ -3,4 +3,5 @@ export interface ILoanPreview {
   idLoan: string;
   datePayment: string | Date;
   status: string;
+  route?: string;
 }

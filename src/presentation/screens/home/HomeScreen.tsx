@@ -24,6 +24,7 @@ const formatLoanPersonal = (loan: any): ILoanPreview => {
     idLoan: `${idLastFourDigits} | Banco Mercantil`,
     datePayment: loan.createdAt,
     status: loan.status,
+    route: 'DetailLoanScreen',
   };
 };
 
@@ -93,7 +94,7 @@ export const HomeScreen = () => {
               iconSVG={ArrowBlack}
               iconPosition="right"
               containerStyle={styles.containerCenteredText}
-              routeRedirection="LobbyLoanScreen"
+              routeRedirection="Loans"
             />
           </>
         )}

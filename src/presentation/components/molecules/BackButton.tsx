@@ -7,8 +7,8 @@ import {
   TextStyle,
 } from 'react-native';
 import {SvgProps} from 'react-native-svg';
-import {useNavigation} from '@react-navigation/native';
 import ArrowLeftWhite from '../../../../assets/svg/arrow-left-white.svg';
+import {useNavigationContext} from '../../navigation/NavigationContext';
 
 interface BackButtonProps {
   Icon?: React.FC<SvgProps>;
@@ -21,18 +21,14 @@ const BackButton: React.FC<BackButtonProps> = ({
   containerStyle,
   textStyle,
 }) => {
-  const navigation = useNavigation();
+  const {goBackToPreviousRoute} = useNavigationContext();
 
   Icon = Icon ?? ArrowLeftWhite;
-
-  const handlePress = () => {
-    navigation.goBack();
-  };
 
   return (
     <TouchableOpacity
       style={[styles.container, containerStyle]}
-      onPress={handlePress}>
+      onPress={goBackToPreviousRoute}>
       <Icon />
       <Text style={[styles.text, textStyle]}>Atrás</Text>
     </TouchableOpacity>

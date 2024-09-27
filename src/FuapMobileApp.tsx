@@ -1,9 +1,10 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {DefaultTheme, PaperProvider} from 'react-native-paper';
+import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import {globalColors} from './theme/GlobalStyles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {SideMenuNavigator} from './presentation/navigation/SideMenuNavigator';
+import {NavigationProvider} from './presentation/navigation/NavigationContext';
 
 const theme = {
   ...DefaultTheme,
@@ -22,7 +23,9 @@ export const FuapMobileApp = () => {
   return (
     <PaperProvider theme={theme} settings={settings}>
       <NavigationContainer>
-        <SideMenuNavigator />
+        <NavigationProvider>
+          <SideMenuNavigator />
+        </NavigationProvider>
       </NavigationContainer>
     </PaperProvider>
   );

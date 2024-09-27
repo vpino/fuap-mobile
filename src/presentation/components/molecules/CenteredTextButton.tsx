@@ -38,9 +38,7 @@ const CenteredTextButton: React.FC<CenteredTextButtonProps> = ({
 
   const handlePress = () => {
     if (routeRedirection) {
-      navigation.navigate('BottomNavigator', {
-        screen: routeRedirection,
-      });
+      navigation.navigate(routeRedirection);
     }
   };
 

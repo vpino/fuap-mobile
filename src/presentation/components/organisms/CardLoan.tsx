@@ -26,8 +26,8 @@ const Cardloan: React.FC<CardloanProps> = ({
 }) => {
   const navigation = useNavigation<NavigationProp<any>>();
 
-  const handlePayment = async () => {
-    navigation.navigate('HomeScreen');
+  const handlePayment = async (route: string) => {
+    navigation.navigate(route ?? 'HomeScreen', {loan});
   };
 
   const today = new Date();
@@ -83,7 +83,9 @@ const Cardloan: React.FC<CardloanProps> = ({
         </View>
 
         <PrimaryButton
-          onPress={handlePayment}
+          onPress={() => {
+            handlePayment(loan?.route ?? 'HomeScreen');
+          }}
           isLoading={false}
           label="Pagar mi préstamo"
           styles={styles.button}
