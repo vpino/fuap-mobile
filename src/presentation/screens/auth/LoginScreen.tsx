@@ -17,6 +17,7 @@ import GoogleLogo from '../../../../assets/google.svg';
 import FacebookLogo from '../../../../assets/fb.svg';
 import AppleLogo from '../../../../assets/apple.svg';
 import SignupText from '../../components/molecules/SignupText';
+import {useNavigationContext} from '../../navigation/NavigationContext';
 
 export const LoginScreen = () => {
   const socialCards = [
@@ -30,6 +31,7 @@ export const LoginScreen = () => {
   const [snackbarVisible, setSnackbarVisible] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState('');
   const isFocused = useIsFocused();
+  const {setCurrentRoute} = useNavigationContext();
 
   const handleLogin = async (values: {email: string; password: string}) => {
     try {
@@ -38,7 +40,10 @@ export const LoginScreen = () => {
 
       setSnackbarMessage('Login Successful');
 
-      navigation.navigate('HomeScreen');
+      const nextRoute = 'HomeScreen';
+
+      setCurrentRoute(nextRoute);
+      navigation.navigate(nextRoute);
     } catch (error: any) {
       setSnackbarMessage(
         error?.message ||

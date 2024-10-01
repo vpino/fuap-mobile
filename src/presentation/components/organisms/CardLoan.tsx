@@ -6,6 +6,7 @@ import {ILoanPreview} from '../../../infrastructure/interfaces/home/loan-preview
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {PrimaryButton} from '../atoms/PrimaryButton';
 import {formatDayMonth} from '../../../config/helpers/dates';
+import {useNavigationContext} from '../../navigation/NavigationContext';
 
 interface CardloanProps {
   containerStyle?: ViewStyle;
@@ -25,8 +26,11 @@ const Cardloan: React.FC<CardloanProps> = ({
   loan,
 }) => {
   const navigation = useNavigation<NavigationProp<any>>();
+  const {setCurrentRoute} = useNavigationContext();
 
   const handlePayment = async (route: string) => {
+    setCurrentRoute(route, loan);
+
     navigation.navigate(route ?? 'HomeScreen', {loan});
   };
 

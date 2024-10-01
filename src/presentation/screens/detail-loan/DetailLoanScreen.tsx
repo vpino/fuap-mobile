@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {globalFontFamily, globalStyles} from '../../../theme/GlobalStyles';
+import {globalFontFamily} from '../../../theme/GlobalStyles';
 import {TitlePrimary} from '../../components/atoms/TitlePrimary';
 import {Divider} from 'react-native-paper';
 import Cardloan from '../../components/organisms/CardLoan';
@@ -8,6 +8,7 @@ import LoanDetailsComponent from '../../components/organisms/LoanDetailsComponen
 import {PrimaryButton} from '../../components/atoms/PrimaryButton';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import BackButton from '../../components/molecules/BackButton';
+import {useNavigationContext} from '../../navigation/NavigationContext';
 
 const loanData = {
   'Monto original del préstamo': '$7,000.00',
@@ -23,20 +24,25 @@ const loanData = {
 };
 
 export const DetailLoanScreen: React.FC<any> = ({route}) => {
-  const {loan} = route.params;
-
+  const {setCurrentRoute, getCurrentRoute} = useNavigationContext();
   const navigation = useNavigation<NavigationProp<any>>();
 
-  const handlePayment = async () => {
-    navigation.navigate('HomeScreen');
-  };
+  const currentRoute = getCurrentRoute();
+  const loan = route.params?.loan || currentRoute?.params?.loan;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setCurrentRoute('DetailLoanScreen', {loan});
+  }, [loan, setCurrentRoute]);
+
+  const handlePayment = async () => {
+    setCurrentRoute('PaymentPersonalLoanScreen', {loan});
+    navigation.navigate('PaymentPersonalLoanScreen', {loan});
+  };
 
   return (
     <ScrollView>
       <View>
-        <BackButton />
+        <BackButton containerStyle={{marginTop: 20}} />
         <TitlePrimary
           label="Detalles del Préstamo"
           styles={styles.textPrimary}
@@ -49,9 +55,7 @@ export const DetailLoanScreen: React.FC<any> = ({route}) => {
         <LoanDetailsComponent data={loanData} />
 
         <PrimaryButton
-          onPress={() => {
-            handlePayment();
-          }}
+          onPress={handlePayment}
           isLoading={false}
           label="Pagar mi préstamo"
           styles={styles.button}
@@ -68,7 +72,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   textPrimary: {
-    marginTop: 0,
+    marginTop: 20,
   },
   button: {
     borderRadius: 6,

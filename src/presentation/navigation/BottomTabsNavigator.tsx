@@ -15,6 +15,9 @@ import {OnboardingScreen} from '../screens/onboarding/OnboardingScreen';
 import {PersonalLoadScreen} from '../screens/personal-loan/PersonalLoanScreen';
 import {HomeLoanScreen} from '../screens/home-loan/HomeLoanScreen';
 import {DetailLoanScreen} from '../screens/detail-loan/DetailLoanScreen';
+import {PaymentPersonalLoanScreen} from '../screens/payment-personal-loan/PaymentPersonalLoanScreen';
+import {AddPaymentAccountScreen} from '../screens/add-payment-account/AddPaymentAccountScreen';
+import {PaymentStatusScreen} from '../screens/payment-status/PaymentStatusScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -119,6 +122,27 @@ export const BottomTabNavigator = () => {
       <Tab.Screen
         name="DetailLoanScreen"
         component={DetailLoanScreen}
+        options={{
+          tabBarButton: () => null,
+        }}
+      />
+      <Tab.Screen
+        name="PaymentPersonalLoanScreen"
+        component={PaymentPersonalLoanScreen}
+        options={{
+          tabBarButton: () => null,
+        }}
+      />
+      <Tab.Screen
+        name="AddPaymentAccountScreen"
+        component={AddPaymentAccountScreen}
+        options={{
+          tabBarButton: () => null,
+        }}
+      />
+      <Tab.Screen
+        name="PaymentStatusScreen"
+        component={PaymentStatusScreen}
         options={{
           tabBarButton: () => null,
         }}

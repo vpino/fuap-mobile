@@ -1,7 +1,6 @@
 import React from 'react';
-import {Text} from 'react-native-paper';
 import {globalColors, globalFontFamily} from '../../../theme/GlobalStyles';
-import {StyleProp, StyleSheet, TextStyle} from 'react-native';
+import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
 
 interface Props {
   label: string;
