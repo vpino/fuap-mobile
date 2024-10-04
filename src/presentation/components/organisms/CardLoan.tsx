@@ -15,6 +15,7 @@ interface CardloanProps {
   subTileStyle?: TextStyle;
   subTileTextStyle?: TextStyle;
   loan: ILoanPreview;
+  type?: string;
 }
 
 const Cardloan: React.FC<CardloanProps> = ({
@@ -24,6 +25,7 @@ const Cardloan: React.FC<CardloanProps> = ({
   subTileStyle,
   subTileTextStyle,
   loan,
+  type,
 }) => {
   const navigation = useNavigation<NavigationProp<any>>();
   const {setCurrentRoute} = useNavigationContext();
@@ -85,16 +87,34 @@ const Cardloan: React.FC<CardloanProps> = ({
             </Text>
           </View>
         </View>
+        {type && (
+          <>
+            <View>
+              <Text
+                style={[styles.secondaryText, styles.boldText, subTileStyle]}>
+                Pago total adeudado:
+              </Text>
+              <Text
+                style={[styles.secondaryText, styles.boldText, subTileStyle]}>
+                $1,104.24
+              </Text>
+            </View>
+          </>
+        )}
 
-        <PrimaryButton
-          onPress={() => {
-            handlePayment(loan?.route ?? 'HomeScreen');
-          }}
-          isLoading={false}
-          label="Pagar mi préstamo"
-          styles={styles.button}
-          textStyles={styles.buttonText}
-        />
+        {!type && (
+          <>
+            <PrimaryButton
+              onPress={() => {
+                handlePayment(loan?.route ?? 'HomeScreen');
+              }}
+              isLoading={false}
+              label="Pagar mi préstamo"
+              styles={styles.button}
+              textStyles={styles.buttonText}
+            />
+          </>
+        )}
       </View>
     </View>
   );
@@ -180,6 +200,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     fontFamily: globalFontFamily.interRegular,
+  },
+  boldText: {
+    color: '#0F172A',
+    fontFamily: globalFontFamily.manropeBold,
+    fontSize: 12,
+    fontWeight: '600',
+    lineHeight: 24,
+    textAlign: 'right',
   },
 });
 

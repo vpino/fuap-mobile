@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {globalFontFamily} from '../../../theme/GlobalStyles';
+import {globalFontFamily, globalStyles} from '../../../theme/GlobalStyles';
 import {TitlePrimary} from '../../components/atoms/TitlePrimary';
 import {Divider} from 'react-native-paper';
 import Cardloan from '../../components/organisms/CardLoan';
@@ -9,6 +9,7 @@ import {PrimaryButton} from '../../components/atoms/PrimaryButton';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import BackButton from '../../components/molecules/BackButton';
 import {useNavigationContext} from '../../navigation/NavigationContext';
+import {SubTitle} from '../../components/atoms/SubTitle';
 
 const loanData = {
   'Monto original del préstamo': '$7,000.00',
@@ -40,15 +41,20 @@ export const DetailLoanScreen: React.FC<any> = ({route}) => {
   };
 
   return (
-    <ScrollView>
-      <View>
+    <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+      <View style={globalStyles.container}>
         <BackButton containerStyle={{marginTop: 20}} />
         <TitlePrimary
           label="Detalles del Préstamo"
           styles={styles.textPrimary}
         />
 
-        <Cardloan loan={loan} />
+        <SubTitle
+          label="Puedes aplicar para cualquier producto ofrecido abajo o realizar cualquier informacion asociado a su cuenta."
+          styles={styles.subTitle}
+        />
+
+        <Cardloan loan={loan} type={loan?.type} />
 
         <Divider style={styles.divider} />
 
@@ -72,7 +78,12 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   textPrimary: {
-    marginTop: 20,
+    marginTop: 10,
+  },
+  subTitle: {
+    color: 'white',
+    marginBottom: 0,
+    marginTop: 0,
   },
   button: {
     borderRadius: 6,

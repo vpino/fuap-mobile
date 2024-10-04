@@ -202,7 +202,7 @@ export const useHomeLoan = ({id}: HomeLoanProps) => {
     }
   };
 
-  const getLastCreatedByCustomer = async () => {
+  const getLastHomeCreatedByCustomer = async () => {
     try {
       setIsLoading(true);
       const response = await UseCases.getLastHomeLoanCreatedByCustomer(
@@ -297,7 +297,7 @@ export const useHomeLoan = ({id}: HomeLoanProps) => {
     updateTermsAndConditions,
     isLoading,
     getAllHomeLoanByCustomer,
-    getLastCreatedByCustomer,
+    getLastHomeCreatedByCustomer,
     updateHomeLoanAddress,
     updateAcceptHomeLoan,
     updateInfoAfterRejected,

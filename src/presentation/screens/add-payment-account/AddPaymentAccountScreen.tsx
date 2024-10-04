@@ -23,6 +23,7 @@ import {TextInputForm} from '../../components/atoms/TextInputForm';
 import AccountBank from '../../../../assets/svg/account-bank.svg';
 import BankAccountItem from '../../components/organisms/BankAccountItem';
 import AddGray from '../../../../assets/svg/add-gray.svg';
+import {SubTitle} from '../../components/atoms/SubTitle';
 
 const percentageOptions = [{key: '1', value: 'Banco Mercantil'}];
 
@@ -46,9 +47,9 @@ export const AddPaymentAccountScreen: React.FC<any> = ({route}) => {
     }
 
     if (account) {
-      accounts.push(account);
+      const updatedAccounts = [...accounts, account];
 
-      setAccounts(accounts);
+      setAccounts(updatedAccounts);
       setAddAccount(false);
 
       return;
@@ -60,6 +61,15 @@ export const AddPaymentAccountScreen: React.FC<any> = ({route}) => {
     setAddAccount(true);
   };
 
+  const removeAccount = (index: number) => {
+    if (index >= 0 && index < accounts.length) {
+      const updatedAccounts = [...accounts];
+      updatedAccounts.splice(index, 1);
+
+      setAccounts(updatedAccounts);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
@@ -67,7 +77,12 @@ export const AddPaymentAccountScreen: React.FC<any> = ({route}) => {
           <BackButton containerStyle={{marginTop: 10}} />
           <TitlePrimary label="Paga tu Préstamo" styles={styles.textPrimary} />
 
-          <Cardloan loan={loan} />
+          <SubTitle
+            label="Puedes aplicar para cualquier producto ofrecido abajo o realizar cualquier informacion asociado a su cuenta."
+            styles={styles.subTitle}
+          />
+
+          <Cardloan loan={loan} type={loan.type} />
 
           <Divider style={styles.divider} />
 
@@ -81,15 +96,16 @@ export const AddPaymentAccountScreen: React.FC<any> = ({route}) => {
 
           {accounts.length <= 0 && !addAccount && (
             <>
-              <View style={styles.row}>
-                <Text style={styles.textTerm}>Cuenta bancaria</Text>
-              </View>
               <TouchableOpacity onPress={enableAddAccount}>
+                <View style={styles.row}>
+                  <Text style={styles.textTerm}>Cuenta bancaria</Text>
+                </View>
                 <CenteredTextButton
                   text="¡Todavía te falta conectar tu cuenta bancaria!"
                   buttonText="Agregar nueva cuenta"
                   iconSVG={ArrowBlack}
                   iconPosition="right"
+                  onPress={enableAddAccount}
                 />
               </TouchableOpacity>
             </>
@@ -140,7 +156,7 @@ export const AddPaymentAccountScreen: React.FC<any> = ({route}) => {
             </>
           )}
 
-          {accounts.length >= 0 && !addAccount && (
+          {accounts.length > 0 && !addAccount && (
             <>
               <View style={styles.row}>
                 <Text>Cuenta Bancaria</Text>
@@ -157,12 +173,15 @@ export const AddPaymentAccountScreen: React.FC<any> = ({route}) => {
           )}
 
           {!addAccount &&
+            accounts.length > 0 &&
             accounts.map((account, index) => (
               <BankAccountItem
                 key={index}
                 bankName={account.bankName}
                 accountNumber={account.accountNumber}
-                onIconPress={() => {}}
+                onIconPress={() => {
+                  removeAccount(index);
+                }}
               />
             ))}
         </View>
@@ -362,6 +381,11 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '500',
     lineHeight: 12,
+  },
+  subTitle: {
+    color: 'white',
+    marginBottom: 0,
+    marginTop: -19,
   },
 });
 

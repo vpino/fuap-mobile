@@ -16,15 +16,17 @@ import ArrowSimpleBlack from '../../../../assets/svg/arrow-simple-black.svg';
 import {usePersonalLoan} from '../../hooks/personal-loan/usePersonalLoan';
 import {useAuthStore} from '../../store/auth/useAuthStore';
 import {useNavigation} from '@react-navigation/native';
+import {useHomeLoan} from '../../hooks/home-loan/useHomeLoan';
 
-const formatLoanPersonal = (loan: any): ILoanPreview => {
+const formatLoanPersonal = (loan: any, type?: string): ILoanPreview => {
   const idLastFourDigits = loan.id.slice(-4);
   return {
-    title: 'Préstamo personal',
+    title: type ? 'Préstamo de Casa ' : 'Préstamo personal',
     idLoan: `${idLastFourDigits} | Banco Mercantil`,
     datePayment: loan.createdAt,
     status: loan.status,
     route: 'DetailLoanScreen',
+    type,
   };
 };
 
@@ -32,8 +34,10 @@ export const HomeScreen = () => {
   const {id} = useAuthStore();
   const {individualCustomer} = useOnboardingStore();
   const {getLastCreatedByCustomer} = usePersonalLoan({id: id ?? ''});
+  const {getLastHomeCreatedByCustomer} = useHomeLoan({id: id ?? ''});
   const [loans, setLoans] = useState<ILoanPreview[]>([]);
   const navigation = useNavigation<any>();
+  const [homeLoan, setHomeLoan] = useState<ILoanPreview>();
 
   const fullName = `${individualCustomer.firstName ?? 'Customer'} ${
     individualCustomer.lastName ?? ''
@@ -45,8 +49,18 @@ export const HomeScreen = () => {
         const personalLoan = await getLastCreatedByCustomer();
 
         if (personalLoan.data) {
-          const loanP = formatLoanPersonal(personalLoan.data);
+          const loanP = formatLoanPersonal(personalLoan.data, 'personal');
           setLoans([loanP]);
+        }
+
+        const lastHomeLoan = await getLastHomeCreatedByCustomer();
+
+        if (lastHomeLoan.data) {
+          const homeLoanFormatted = formatLoanPersonal(
+            lastHomeLoan.data,
+            'home',
+          );
+          setHomeLoan(homeLoanFormatted);
         }
       } catch (error) {
         console.error('Error fetching personal loan: ', error);
@@ -83,6 +97,12 @@ export const HomeScreen = () => {
             {loans.map((loan, key) => (
               <Cardloan key={key} loan={loan} />
             ))}
+          </>
+        )}
+
+        {homeLoan && (
+          <>
+            <Cardloan loan={homeLoan} />
           </>
         )}
 

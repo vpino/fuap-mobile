@@ -4,4 +4,5 @@ export interface ILoanPreview {
   datePayment: string | Date;
   status: string;
   route?: string;
+  type?: string;
 }

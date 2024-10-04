@@ -21,6 +21,7 @@ interface CenteredTextButtonProps {
   iconSVG?: React.FC<SvgProps>;
   iconPosition?: 'left' | 'right';
   routeRedirection?: string;
+  onPress?: () => void;
 }
 
 const CenteredTextButton: React.FC<CenteredTextButtonProps> = ({
@@ -33,10 +34,16 @@ const CenteredTextButton: React.FC<CenteredTextButtonProps> = ({
   iconSVG: IconSVG,
   iconPosition = 'left',
   routeRedirection,
+  onPress,
 }) => {
   const navigation = useNavigation<NavigationProp<any>>();
 
   const handlePress = () => {
+    if (onPress) {
+      onPress();
+      return;
+    }
+
     if (routeRedirection) {
       navigation.navigate(routeRedirection);
     }

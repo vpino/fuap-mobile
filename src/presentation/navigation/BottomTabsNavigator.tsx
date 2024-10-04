@@ -57,17 +57,31 @@ export const BottomTabNavigator = () => {
         component={LoginScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
-      <Tab.Screen name="HomeScreen" component={HomeScreen} />
-      <Tab.Screen name="Loans" component={LobbyLoanScreen} />
-      <Tab.Screen name="SubmissionsScreen" component={SubmmissionsScreen} />
+      <Tab.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{unmountOnBlur: true}}
+      />
+      <Tab.Screen
+        name="Loans"
+        component={LobbyLoanScreen}
+        options={{unmountOnBlur: true}}
+      />
+      <Tab.Screen
+        name="SubmissionsScreen"
+        component={SubmmissionsScreen}
+        options={{unmountOnBlur: true}}
+      />
 
       <Tab.Screen
         name="RegisterScreen"
         component={RegisterScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -75,6 +89,7 @@ export const BottomTabNavigator = () => {
         component={ProfileScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -82,6 +97,7 @@ export const BottomTabNavigator = () => {
         component={LoginScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -89,6 +105,7 @@ export const BottomTabNavigator = () => {
         component={LobbyOnboardingScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -96,6 +113,7 @@ export const BottomTabNavigator = () => {
         component={OnboardingScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -103,6 +121,7 @@ export const BottomTabNavigator = () => {
         component={LobbyLoanScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -110,6 +129,7 @@ export const BottomTabNavigator = () => {
         component={PersonalLoadScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -117,6 +137,7 @@ export const BottomTabNavigator = () => {
         component={HomeLoanScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -124,6 +145,7 @@ export const BottomTabNavigator = () => {
         component={DetailLoanScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -131,6 +153,7 @@ export const BottomTabNavigator = () => {
         component={PaymentPersonalLoanScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -138,6 +161,7 @@ export const BottomTabNavigator = () => {
         component={AddPaymentAccountScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -145,6 +169,7 @@ export const BottomTabNavigator = () => {
         component={PaymentStatusScreen}
         options={{
           tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
     </Tab.Navigator>
