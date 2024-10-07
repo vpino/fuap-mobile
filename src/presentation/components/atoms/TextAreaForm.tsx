@@ -2,25 +2,22 @@ import React from 'react';
 import {StyleSheet, View, TextInput, TextInputProps} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 
-interface TextInputFormProps extends TextInputProps {
+interface TextAreaFormProps extends TextInputProps {
   label: string;
   icon?: React.FC<SvgProps>;
   iconPosition?: 'left' | 'right';
   onIconPress?: () => void;
-  disabled?: boolean;
 }
 
-export const TextInputForm: React.FC<TextInputFormProps> = ({
+export const TextAreaForm: React.FC<TextAreaFormProps> = ({
   label,
   icon: Icon,
   iconPosition = 'left',
   style,
-  disabled,
   ...rest
 }) => {
   return (
-    <View
-      style={[styles.container, style, disabled && styles.disabledContainer]}>
+    <View style={[styles.container, style]}>
       {Icon && iconPosition === 'left' && (
         <View style={styles.iconWrapper}>
           <Icon style={styles.icon} />
@@ -29,15 +26,17 @@ export const TextInputForm: React.FC<TextInputFormProps> = ({
       <TextInput
         style={[
           styles.input,
+          styles.textArea,
           iconPosition === 'left' ? {paddingLeft: 20} : {paddingRight: 20},
-          disabled && styles.disabledInput,
         ]}
         placeholder={label}
         placeholderTextColor="#676F82"
         underlineColorAndroid="transparent"
-        autoCapitalize="none"
-        editable={!disabled}
+        multiline={true}
+        numberOfLines={4}
+        textAlignVertical="top"
         {...rest}
+        autoCapitalize="none"
       />
       {Icon && iconPosition === 'right' && (
         <View style={styles.iconWrapper}>
@@ -51,7 +50,7 @@ export const TextInputForm: React.FC<TextInputFormProps> = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: 10,
     borderRadius: 4,
     borderWidth: 1,
@@ -59,19 +58,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     color: '#676F82',
   },
-  disabledContainer: {
-    backgroundColor: '#f0f0f0',
-    borderColor: '#d0d0d0',
-  },
   input: {
     flex: 1,
-    height: 55,
     fontFamily: 'Inter',
     fontSize: 16,
     fontWeight: '400',
   },
-  disabledInput: {
-    color: '#a0a0a0',
+  textArea: {
+    minHeight: 100,
+    padding: 10,
   },
   iconWrapper: {
     marginLeft: 10,

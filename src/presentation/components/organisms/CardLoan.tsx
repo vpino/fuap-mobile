@@ -82,9 +82,20 @@ const Cardloan: React.FC<CardloanProps> = ({
             <Text style={[styles.subTileTextStyle, subTileTextStyle]}>
               {formatDayMonth(loan?.datePayment)}
             </Text>
-            <Text style={[status.style, styles.status, status.style]}>
-              {status.text}
-            </Text>
+            {type === 'home' && (
+              <>
+                <Text style={[styles.status, styles.pendingText]}>
+                  | Pendiente
+                </Text>
+              </>
+            )}
+            {type !== 'home' && (
+              <>
+                <Text style={[status.style, styles.status, status.style]}>
+                  {status.text}
+                </Text>
+              </>
+            )}
           </View>
         </View>
         {type && (
@@ -209,6 +220,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     textAlign: 'right',
   },
+  statusPending: {},
 });
 
 export default Cardloan;

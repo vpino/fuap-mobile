@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -38,6 +38,27 @@ export const AddPaymentAccountScreen: React.FC<any> = ({route}) => {
   const [bank, setBank] = useState<string>('');
   const [bankNumber, setBankNumber] = useState<string>('');
   const [accounts, setAccounts] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (loan.type === 'home') {
+      setAccounts([
+        {
+          bankName: 'Banco Mercantil',
+          accountNumber: '******4412',
+          type: 'Primaria',
+          selected: true,
+        },
+        {
+          bankName: 'Banco Popular',
+          accountNumber: '******1321',
+          type: 'Ahorro',
+        },
+      ]);
+
+      setBank('1');
+      setBankNumber('1');
+    }
+  }, []);
 
   const handlePayment = async (routeGo?: string, account?: any) => {
     if (routeGo) {
@@ -179,6 +200,8 @@ export const AddPaymentAccountScreen: React.FC<any> = ({route}) => {
                 key={index}
                 bankName={account.bankName}
                 accountNumber={account.accountNumber}
+                type={account.type}
+                selected={account.selected}
                 onIconPress={() => {
                   removeAccount(index);
                 }}

@@ -3,26 +3,41 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import CheckItem from '../../../../assets/svg/check-item.svg';
 import DeleteAccount from '../../../../assets/svg/delete-account.svg';
 import {globalFontFamily} from '../../../theme/GlobalStyles';
+import UnCheckItem from '../../../../assets/svg/check-unselected-gray.svg';
 
 interface BankAccountItemProps {
   bankName: string;
   accountNumber: string;
   onIconPress: () => void;
+  type?: string;
+  selected?: boolean;
 }
 
 const BankAccountItem: React.FC<BankAccountItemProps> = ({
   bankName,
   accountNumber,
   onIconPress,
+  type,
+  selected,
 }) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
-        <CheckItem style={styles.icon} />
+        {selected && (
+          <>
+            <CheckItem style={styles.icon} />
+          </>
+        )}
+
+        {!selected && (
+          <>
+            <UnCheckItem style={styles.icon} />
+          </>
+        )}
         <View style={styles.textContainer}>
           <Text style={styles.bankName}>{bankName}</Text>
           <Text style={styles.accountNumber}>
-            Cuenta: Principal {accountNumber}
+            Cuenta: {type} {accountNumber}
           </Text>
         </View>
       </View>
@@ -48,7 +63,8 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 3},
     shadowOpacity: 1,
     shadowRadius: 16,
-    elevation: 1, // For Android shadow
+    elevation: 1,
+    marginBottom: 10,
   },
   leftContainer: {
     flexDirection: 'row',

@@ -21,7 +21,7 @@ import {useHomeLoan} from '../../hooks/home-loan/useHomeLoan';
 const formatLoanPersonal = (loan: any, type?: string): ILoanPreview => {
   const idLastFourDigits = loan.id.slice(-4);
   return {
-    title: type ? 'Préstamo de Casa ' : 'Préstamo personal',
+    title: type === 'home' ? 'Préstamo de Casa ' : 'Préstamo Personal',
     idLoan: `${idLastFourDigits} | Banco Mercantil`,
     datePayment: loan.createdAt,
     status: loan.status,

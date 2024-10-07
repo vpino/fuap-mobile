@@ -18,6 +18,7 @@ import {DetailLoanScreen} from '../screens/detail-loan/DetailLoanScreen';
 import {PaymentPersonalLoanScreen} from '../screens/payment-personal-loan/PaymentPersonalLoanScreen';
 import {AddPaymentAccountScreen} from '../screens/add-payment-account/AddPaymentAccountScreen';
 import {PaymentStatusScreen} from '../screens/payment-status/PaymentStatusScreen';
+import {ConfirmTicketScreen} from '../screens/support/ConfirmTicketScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -167,6 +168,14 @@ export const BottomTabNavigator = () => {
       <Tab.Screen
         name="PaymentStatusScreen"
         component={PaymentStatusScreen}
+        options={{
+          tabBarButton: () => null,
+          unmountOnBlur: true,
+        }}
+      />
+      <Tab.Screen
+        name="ConfirmTicketScreen"
+        component={ConfirmTicketScreen}
         options={{
           tabBarButton: () => null,
           unmountOnBlur: true,

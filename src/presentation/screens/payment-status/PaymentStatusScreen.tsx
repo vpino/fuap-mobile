@@ -13,10 +13,11 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import BackButton from '../../components/molecules/BackButton';
 import {useNavigationContext} from '../../navigation/NavigationContext';
 import Cardloan from '../../components/organisms/CardLoan';
-import {globalFontFamily} from '../../../theme/GlobalStyles';
+import {globalFontFamily, globalStyles} from '../../../theme/GlobalStyles';
 import LoanDetailsComponent from '../../components/organisms/LoanDetailsComponent';
 import {PrimaryButton} from '../../components/atoms/PrimaryButton';
 import StepIndicator from '../../components/atoms/StepIndicator';
+import {SubTitle} from '../../components/atoms/SubTitle';
 
 const loanData = {
   'Banco Mercantil': 'Cuenta Primaria',
@@ -50,13 +51,18 @@ export const PaymentStatusScreen: React.FC<any> = ({route}) => {
   };
 
   return (
-    <ScrollView>
-      <View>
+    <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+      <View style={globalStyles.container}>
         <BackButton containerStyle={{marginTop: 10}} />
 
         <TitlePrimary label="Paga tu Préstamo" styles={styles.textPrimary} />
 
-        <Cardloan loan={loan} />
+        <SubTitle
+          label="Puedes aplicar para cualquier producto ofrecido abajo o realizar cualquier informacion asociado a su cuenta."
+          styles={styles.subTitle}
+        />
+
+        <Cardloan loan={loan} type={loan.type} />
 
         <Divider style={styles.divider} />
 
@@ -258,5 +264,10 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '700',
     lineHeight: 12,
+  },
+  subTitle: {
+    color: 'white',
+    marginBottom: 0,
+    marginTop: -19,
   },
 });
