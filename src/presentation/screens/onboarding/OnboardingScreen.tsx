@@ -15,6 +15,7 @@ import {OccupationInformation} from '../../components/organisms/OccupationInform
 import {CompanyInformation} from '../../components/organisms/CompanyInformation';
 import {ContactInformation} from '../../components/organisms/ContactInformation';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {useNavigationContext} from '../../navigation/NavigationContext';
 
 enum StatusOnboarding {
   LOAD_NAMES = 'loadNames',
@@ -44,19 +45,37 @@ export const OnboardingScreen = () => {
   const [state, send] = useMachine(onboardingMachine);
   const {individualCustomer} = useOnboardingStore();
   const navigation = useNavigation<NavigationProp<any>>();
+  const {getCurrentRoute} = useNavigationContext();
 
-  const status = StatusOnboarding[individualCustomer.status ?? 'LOAD_NAMES'];
+  const currentRoute = getCurrentRoute();
+  const statusOnboarding = currentRoute?.params
+    ?.statusOnboarding as StatusOnboarding;
+
+  const status =
+    StatusOnboarding[
+      (
+        statusOnboarding ??
+        individualCustomer.status ??
+        'LOAD_NAMES'
+      ).toUpperCase() as keyof typeof StatusOnboarding
+    ];
 
   const progressBar =
-    ProgressBarEnum[individualCustomer.status ?? 'LOAD_NAMES'];
+    ProgressBarEnum[
+      (
+        statusOnboarding ??
+        individualCustomer.status ??
+        'LOAD_NAMES'
+      ).toUpperCase() as keyof typeof StatusOnboarding
+    ];
 
   const currentState = status !== 'loadNames' ? status : state.value;
 
   useEffect(() => {
-    if (status === StatusOnboarding.COMPLETED) {
+    if (status === StatusOnboarding.COMPLETED && !statusOnboarding) {
       navigation.navigate('HomeScreen');
     }
-  }, [status, navigation]);
+  }, [status, navigation, statusOnboarding]);
 
   return (
     <ScrollView

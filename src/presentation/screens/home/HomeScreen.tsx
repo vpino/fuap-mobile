@@ -106,7 +106,7 @@ export const HomeScreen = () => {
           </>
         )}
 
-        {loans.length <= 0 && (
+        {loans.length <= 0 && !homeLoan && (
           <>
             <CenteredTextButton
               text="¡Todavía no tienes un préstamo activo!"

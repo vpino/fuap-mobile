@@ -30,6 +30,7 @@ export interface IndividualCustomer {
   companyAddress?: string;
   companyCity?: string;
   companyState?: string;
+  companyTown?: string;
   companyYear?: string;
   companyMonth?: string;
   phone?: string;
@@ -42,4 +43,5 @@ export interface IndividualCustomer {
   isDeleted?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
+  email?: string;
 }

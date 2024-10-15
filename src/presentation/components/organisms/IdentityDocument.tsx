@@ -21,8 +21,8 @@ interface IdentityDocumentProps {
 }
 
 const typeDocuments = [
-  {key: '1', value: 'DNI'},
-  {key: '2', value: 'PASSPORT'},
+  {key: 'DNI', value: 'DNI'},
+  {key: 'PASSPORT', value: 'PASSPORT'},
 ];
 
 export const IdentityDocument: React.FC<IdentityDocumentProps> = ({send}) => {
@@ -121,6 +121,7 @@ export const IdentityDocument: React.FC<IdentityDocumentProps> = ({send}) => {
 
           <SelectList
             setSelected={(value: string) => {
+              console.log('value', value);
               setFieldValue('typeDocument', value);
             }}
             data={typeDocuments}
@@ -130,6 +131,10 @@ export const IdentityDocument: React.FC<IdentityDocumentProps> = ({send}) => {
             placeholder="Tipo de documento"
             searchPlaceholder="Buscar"
             notFoundText="No encontrado"
+            defaultOption={{
+              key: individualCustomer.typeDocument,
+              value: individualCustomer.typeDocument,
+            }}
           />
 
           <TextInputForm

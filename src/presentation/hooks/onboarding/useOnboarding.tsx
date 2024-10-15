@@ -207,6 +207,59 @@ export const useOnboarding = ({id}: OnboardingProps) => {
     }
   };
 
+  const updateOnboarding = async (body: any) => {
+    try {
+      setIsLoading(true);
+      const response = await UseCases.updateOnboardingUseCase(
+        baseAdapterFetcher,
+        id,
+        body,
+      );
+
+      console.log('response ', response);
+
+      updateIndividualCustomer({
+        phone: response?.phone,
+        status: response?.status,
+        firstName: response?.firstName,
+        middleName: response?.middleName,
+        lastName: response?.lastName,
+        dateOfBirth: response?.dateOfBirth,
+        country: response?.country,
+        city: response?.city,
+        state: response?.state,
+        zipCode: response?.zipCode,
+        dni: response?.dni,
+        address: response?.address,
+        addressExtension: response?.addressExtension,
+        typeDocument: response?.typeDocument,
+        town: response?.town,
+        housingType: response?.housingType,
+        housingYear: response?.housingYear,
+        housingMonth: response?.housingMonth,
+        educationLevel: response?.educationLevel,
+        educationArea: response?.educationArea,
+        educationYear: response?.educationYear,
+        occupation: response?.occupation,
+        typeBusiness: response?.typeBusiness,
+        companyName: response?.companyName,
+        companyPhone: response?.companyPhone,
+        companyAddress: response?.companyAddress,
+        companyCity: response?.companyCity,
+        companyState: response?.companyState,
+        companyTown: response?.companyTown,
+        companyYear: response?.companyYear,
+        companyMonth: response?.companyMonth,
+      });
+
+      return response;
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     loadNames,
     identityDocument,
@@ -217,5 +270,6 @@ export const useOnboarding = ({id}: OnboardingProps) => {
     companyData,
     contactData,
     isLoading,
+    updateOnboarding,
   };
 };

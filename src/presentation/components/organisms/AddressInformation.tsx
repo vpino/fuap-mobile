@@ -19,21 +19,18 @@ interface AddressInformationProps {
 }
 
 const stateOptions = [
-  {key: '1', value: 'State 1'},
-  {key: '2', value: 'State 2'},
-  // Add more options
+  {key: 'State 1', value: 'State 1'},
+  {key: 'State 2', value: 'State 2'},
 ];
 
 const cityOptions = [
-  {key: '1', value: 'City 1'},
-  {key: '2', value: 'City 2'},
-  // Add more options
+  {key: 'City 1', value: 'City 1'},
+  {key: 'City 2', value: 'City 2'},
 ];
 
 const townOptions = [
-  {key: '1', value: 'Town 1'},
-  {key: '2', value: 'Town 2'},
-  // Add more options
+  {key: 'Town 1', value: 'Town 1'},
+  {key: 'Town 2', value: 'Town 2'},
 ];
 
 export const AddressInformation: React.FC<AddressInformationProps> = ({
@@ -46,6 +43,8 @@ export const AddressInformation: React.FC<AddressInformationProps> = ({
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const [streetPart, aptPart] = individualCustomer?.address?.split(',') ?? '';
 
   const handleAddressInformation = async (values: {
     street: string;
@@ -101,8 +100,8 @@ export const AddressInformation: React.FC<AddressInformationProps> = ({
   return (
     <Formik
       initialValues={{
-        street: '',
-        aptNumber: '',
+        street: streetPart || '',
+        aptNumber: aptPart || '',
         state: individualCustomer.state || '',
         city: individualCustomer.city || '',
         town: individualCustomer.town || '',
@@ -125,7 +124,7 @@ export const AddressInformation: React.FC<AddressInformationProps> = ({
           <View style={styles.rowContainer}>
             <TextInputForm
               label="Calle y Numero"
-              value={values.street}
+              value={values.street || streetPart}
               onChangeText={handleChange('street')}
               onBlur={handleBlur('street')}
               style={{width: '70%'}}
@@ -136,7 +135,7 @@ export const AddressInformation: React.FC<AddressInformationProps> = ({
 
             <TextInputForm
               label="Apt N."
-              value={values.aptNumber}
+              value={values.aptNumber || aptPart}
               onChangeText={handleChange('aptNumber')}
               onBlur={handleBlur('aptNumber')}
               style={{width: '27.5%'}}
@@ -155,6 +154,10 @@ export const AddressInformation: React.FC<AddressInformationProps> = ({
             placeholder="Estado"
             searchPlaceholder="Buscar"
             notFoundText="No encontrado"
+            defaultOption={{
+              key: individualCustomer.state,
+              value: individualCustomer.state,
+            }}
           />
           {touched.state && errors.state && (
             <Text style={globalStyles.errorText}>{errors.state}</Text>
@@ -169,6 +172,10 @@ export const AddressInformation: React.FC<AddressInformationProps> = ({
             placeholder="Ciudad"
             searchPlaceholder="Buscar"
             notFoundText="No encontrado"
+            defaultOption={{
+              key: individualCustomer.city,
+              value: individualCustomer.city,
+            }}
           />
           {touched.city && errors.city && (
             <Text style={globalStyles.errorText}>{errors.city}</Text>
@@ -183,6 +190,10 @@ export const AddressInformation: React.FC<AddressInformationProps> = ({
             placeholder="Municipio"
             searchPlaceholder="Buscar"
             notFoundText="No encontrado"
+            defaultOption={{
+              key: individualCustomer.town,
+              value: individualCustomer.town,
+            }}
           />
           {touched.town && errors.town && (
             <Text style={globalStyles.errorText}>{errors.town}</Text>

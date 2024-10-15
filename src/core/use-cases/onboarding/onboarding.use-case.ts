@@ -164,3 +164,19 @@ export const contactInfoUseCase = async (
     throw new Error(error);
   }
 };
+
+export const updateOnboardingUseCase = async (
+  fetcher: HttpAdapter,
+  id: string,
+  body: any,
+): Promise<any> => {
+  try {
+    const response = await fetcher.put<any>(`/individual-customer/${id}`, body);
+    return response.data;
+  } catch (error: any) {
+    console.log(
+      `Error fetching onboarding info - updateOnboardingUseCase: ${error}`,
+    );
+    throw new Error(error);
+  }
+};

@@ -20,7 +20,7 @@ const Header = () => {
           <Image
             style={styles.group791}
             resizeMode="cover"
-            source={require('../../../../assets/group-79-1.png')}
+            source={require('../../../../assets/tuni-logo.png')}
           />
         </View>
       </View>
