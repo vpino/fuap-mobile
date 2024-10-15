@@ -10,10 +10,10 @@ const Header = () => {
   return (
     <View style={styles.headerContainer}>
       <Image
-        source={require('../../../../assets/vibrant-logo.png')}
+        source={require('../../../../assets/tuni-logo.png')}
         style={styles.logo}
       />
-      <View style={styles.titleContainer}>
+      {/* <View style={styles.titleContainer}>
         <Text style={[styles.title]}>VIBRANT</Text>
         <View style={[styles.subTitleContainer]}>
           <Text style={styles.subTitle}>Powered by</Text>
@@ -23,7 +23,7 @@ const Header = () => {
             source={require('../../../../assets/tuni-logo.png')}
           />
         </View>
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -36,8 +36,9 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   logo: {
-    width: 27,
-    height: 20,
+    marginLeft: 10,
+    width: 48,
+    height: 24,
   },
   titleContainer: {
     flexDirection: 'column',
