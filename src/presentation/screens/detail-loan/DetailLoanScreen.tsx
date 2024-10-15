@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   subTitle: {
     color: 'white',
     marginBottom: 0,
-    marginTop: 0,
+    marginTop: -17,
   },
   button: {
     borderRadius: 6,
