@@ -5,12 +5,15 @@ interface OnboardingState {
   individualCustomer: IndividualCustomer;
   setIndividualCustomer: (customer: Partial<IndividualCustomer>) => void;
   updateIndividualCustomer: (customer: Partial<IndividualCustomer>) => void;
+  resetIndividualCustomer: () => void;
 }
 
+const initialIndividualCustomer: IndividualCustomer = {
+  id: '',
+};
+
 export const useOnboardingStore = create<OnboardingState>(set => ({
-  individualCustomer: {
-    id: '',
-  },
+  individualCustomer: initialIndividualCustomer,
   setIndividualCustomer: customer =>
     set(state => ({
       individualCustomer: {...state.individualCustomer, ...customer},
@@ -19,4 +22,8 @@ export const useOnboardingStore = create<OnboardingState>(set => ({
     set(state => ({
       individualCustomer: {...state.individualCustomer, ...customer},
     })),
+  resetIndividualCustomer: () =>
+    set({
+      individualCustomer: initialIndividualCustomer,
+    }),
 }));

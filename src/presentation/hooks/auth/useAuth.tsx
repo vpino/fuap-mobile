@@ -17,7 +17,7 @@ interface AuthProps {
 
 export const useAuth = () => {
   const {onLogin, onLogout} = useAuthStore();
-  const {setIndividualCustomer} = useOnboardingStore();
+  const {setIndividualCustomer, resetIndividualCustomer} = useOnboardingStore();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -63,6 +63,7 @@ export const useAuth = () => {
   };
 
   const logout = async () => {
+    await resetIndividualCustomer();
     await StorageAdapter.removeItem('token');
     await onLogout();
   };

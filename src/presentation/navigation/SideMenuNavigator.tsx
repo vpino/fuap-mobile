@@ -46,6 +46,7 @@ export const SideMenuNavigator = () => {
             />
           ),
           headerTitle: '',
+          unmountOnBlur: true,
         }}
       />
       <Drawer.Screen
@@ -59,6 +60,7 @@ export const SideMenuNavigator = () => {
             />
           ),
           headerTitle: '',
+          unmountOnBlur: true,
         }}
       />
       <Drawer.Screen
@@ -72,6 +74,7 @@ export const SideMenuNavigator = () => {
             />
           ),
           headerTitle: '',
+          unmountOnBlur: true,
         }}
       />
     </Drawer.Navigator>

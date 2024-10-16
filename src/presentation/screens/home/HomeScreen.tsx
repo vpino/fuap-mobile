@@ -51,6 +51,8 @@ export const HomeScreen = () => {
         if (personalLoan.data) {
           const loanP = formatLoanPersonal(personalLoan.data, 'personal');
           setLoans([loanP]);
+        } else {
+          setLoans([]);
         }
 
         const lastHomeLoan = await getLastHomeCreatedByCustomer();
@@ -61,9 +63,11 @@ export const HomeScreen = () => {
             'home',
           );
           setHomeLoan(homeLoanFormatted);
+        } else {
+          setHomeLoan(undefined);
         }
       } catch (error) {
-        console.error('Error fetching personal loan: ', error);
+        console.log('Error fetching personal loan: ', error);
       }
     };
 
@@ -72,7 +76,7 @@ export const HomeScreen = () => {
     navigation
       .getParent()
       ?.setOptions({tabBarStyle: {display: 'flex'}, tabBarVisible: true});
-  }, [navigation]);
+  }, [navigation, individualCustomer]);
 
   return (
     <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
